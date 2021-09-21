@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PizzaBestilling/DAL/IOrderRepository.cs">
+    <Files>
+      <File FileName="PizzaBestilling/ClientApp/src/App.js" Line="19" Column="1" />
+      <File FileName="PizzaBestilling/Startup.cs" Line="26" Column="47" />
+      <File FileName="PizzaBestilling/appsettings.json" Line="1" Column="1" />
+      <File FileName="PizzaBestilling/Program.cs" Line="26" Column="2" />
+      <File FileName="PizzaBestilling/Pages/Error.cshtml" Line="1" Column="1" />
+      <File FileName="PizzaBestilling/Pages/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="PizzaBestilling/Models/Order.cs" Line="22" Column="19" />
+      <File FileName="PizzaBestilling/Models/OrderDB.cs" Line="9" Column="10" />
+      <File FileName="PizzaBestilling/Controllers/OrderController.cs" Line="11" Column="5" />
+      <File FileName="PizzaBestilling/DAL/OrderRepository.cs" Line="15" Column="37" />
+      <File FileName="PizzaBestilling/DAL/IOrderRepository.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PizzaBestilling" expanded="True">
+            <Node name="PizzaBestilling" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="DAL" expanded="True">
+                <Node name="IOrderRepository.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.PizzaBestilling PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

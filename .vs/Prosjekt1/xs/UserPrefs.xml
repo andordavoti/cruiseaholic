@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|PizzaBestilling">
+  <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Startup.cs">
+    <Files>
+      <File FileName="Prosjekt1/Startup.cs" Line="11" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Prosjekt1" expanded="True">
+            <Node name="Prosjekt1" expanded="True">
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
