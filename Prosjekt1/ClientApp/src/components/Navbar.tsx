@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   Divider,
-  SwipeableDrawer,
   IconButton,
   Link,
   List,
@@ -15,18 +14,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { AiOutlineInstagram } from "react-icons/ai";
 import { MdMailOutline, MdClose } from "react-icons/md";
 import { Link as RouteLink } from "react-router-dom";
-import { useState } from "react";
 import logoImg from "../assets/logo.png";
-import { useIsMobile } from "../hooks/useIsMobile";
 
 const Navbar: React.FC = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
   const theme = useTheme();
-  const isMobile = useIsMobile();
   return (
     <AppBar
       color="primary"
@@ -62,108 +55,15 @@ const Navbar: React.FC = () => {
             </div>
           </RouteLink>
 
-          {isMobile ? (
-            <Box>
-              <IconButton color="secondary" onClick={() => setDrawerOpen(true)}>
-                <HiMenuAlt3 size="2rem" />
-              </IconButton>
-
-              <SwipeableDrawer
-                anchor="right"
-                open={drawerOpen}
-                onOpen={() => setDrawerOpen(true)}
-                onClose={() => setDrawerOpen(false)}
-              >
-                <div
-                  style={{ width: 250, marginLeft: 15 }}
-                  onClick={() => setDrawerOpen(false)}
-                  onKeyDown={() => setDrawerOpen(false)}
-                >
-                  <div
-                    style={{
-                      width: 250,
-                      display: "flex",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    <IconButton
-                      style={{ marginTop: 15, marginRight: 15 }}
-                      color="secondary"
-                    >
-                      <MdClose
-                        color={theme.palette.secondary.main}
-                        size="2rem"
-                      />
-                    </IconButton>
-                  </div>
-
-                  <List>
-                    <Link target="_blank" rel="noopener noreferrer" href="">
-                      <ListItem button>
-                        <ListItemIcon>
-                          <MdMailOutline
-                            color={theme.palette.secondary.main}
-                            size="2rem"
-                          />
-                        </ListItemIcon>
-                        <ListItemText
-                          primary="Email"
-                          primaryTypographyProps={{ color: "secondary" }}
-                        />
-                      </ListItem>
-                    </Link>
-                  </List>
-                  <Divider />
-
-                  <List>
-                    <RouteLink to="/">
-                      <ListItem button>
-                        <ListItemText
-                          primary="Home"
-                          primaryTypographyProps={{ color: "secondary" }}
-                        />
-                      </ListItem>
-                    </RouteLink>
-
-                    <RouteLink to="/producers">
-                      <ListItem button>
-                        <ListItemText
-                          primary="Producers"
-                          primaryTypographyProps={{ color: "secondary" }}
-                        />
-                      </ListItem>
-                    </RouteLink>
-
-                    <RouteLink to="/privacy">
-                      <ListItem button>
-                        <ListItemText
-                          primary="Privacy Policy"
-                          primaryTypographyProps={{ color: "secondary" }}
-                        />
-                      </ListItem>
-                    </RouteLink>
-
-                    <RouteLink to="/terms">
-                      <ListItem button>
-                        <ListItemText
-                          primary="Terms of Service"
-                          primaryTypographyProps={{ color: "secondary" }}
-                        />
-                      </ListItem>
-                    </RouteLink>
-                  </List>
-                </div>
-              </SwipeableDrawer>
-            </Box>
-          ) : (
-            <Box>
-              <Link target="_blank" rel="noopener noreferrer" href="">
-                <IconButton color="secondary">
-                  <MdMailOutline size="2rem" />
-                </IconButton>
-              </Link>
-            </Box>
-          )}
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="mailto:s354356@oslomet.no"
+          >
+            <IconButton color="secondary">
+              <MdMailOutline size="2rem" />
+            </IconButton>
+          </Link>
         </Container>
       </Toolbar>
     </AppBar>
