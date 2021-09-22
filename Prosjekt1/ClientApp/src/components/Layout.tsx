@@ -1,13 +1,15 @@
-﻿import { FC } from "react";
-import { Container } from "reactstrap";
-import NavMenu from "./NavMenu";
+﻿import { Container } from "@mui/material";
+import { FC } from "react";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const Layout: FC = ({ children }) => {
   return (
-    <div>
-      <NavMenu />
+    <>
+      <Navbar />
       <Container>{children}</Container>
-    </div>
+      <Footer />
+    </>
   );
 };
 

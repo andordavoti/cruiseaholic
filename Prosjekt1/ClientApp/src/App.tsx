@@ -1,17 +1,21 @@
 ﻿import { FC } from "react";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { Route } from "react-router";
 import Layout from "./components/Layout";
 
 import "./custom.css";
-import NewOrder from "./components/NewOrder";
-import Orders from "./components/Orders";
+import { themeOptions } from "./lib/themeOptions";
+import HomePage from "./pages/HomePage";
+
+const theme = createTheme(themeOptions);
 
 const App: FC = () => {
   return (
-    <Layout>
-      <Route exact path="/" component={Orders} />
-      <Route path="/new-order" component={NewOrder} />
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Route exact path="/" component={HomePage} />
+      </Layout>
+    </ThemeProvider>
   );
 };
 
