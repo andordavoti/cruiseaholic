@@ -1,12 +1,17 @@
-import { TextField, Typography, Button, useTheme } from "@mui/material";
+import {
+  TextField,
+  Typography,
+  Button,
+  useTheme,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
 import dayjs from "dayjs";
 import { FC, useState } from "react";
-import { useIsMobile } from "../hooks/useIsMobile";
 import CountrySelector from "./CountrySelector";
 
 const Booking: FC = () => {
   const theme = useTheme();
-  const isMobile = useIsMobile();
 
   const initialFormData = {
     firstName: "",
@@ -24,7 +29,7 @@ const Booking: FC = () => {
   const [formData, setFormData] = useState(initialFormData);
 
   const [fromDestination, setFromDestination] = useState("Oslo, Norway");
-  const [toDestination, setToDestination] = useState("");
+  const [toDestination, setToDestination] = useState("Strømstad, Sweden");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,23 +39,23 @@ const Booking: FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      await fetch("order/newOrder", {
-        method: "post",
-        body: JSON.stringify({
-          formData,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    // try {
+    //   await fetch("order/newOrder", {
+    //     method: "post",
+    //     body: JSON.stringify({
+    //       formData,
+    //     }),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
 
-      setFormData(initialFormData);
-      alert("Order was successfully registered!");
-    } catch (err) {
-      console.log(err);
-      alert("Something went wrong!");
-    }
+    //   setFormData(initialFormData);
+    //   alert("Order was successfully registered!");
+    // } catch (err) {
+    //   console.log(err);
+    //   alert("Something went wrong!");
+    // }
   };
 
   return (
@@ -66,6 +71,7 @@ const Booking: FC = () => {
       <Typography color="textPrimary" variant="h3">
         Booking
       </Typography>
+
       {/* 
       <input
         type="date"
@@ -76,94 +82,114 @@ const Booking: FC = () => {
         max={dayjs().add(5, "year").format("YYYY-MM-DD")}
       /> */}
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          maxWidth: 500,
-          margin: "2rem",
-        }}
-      >
-        <CountrySelector
-          title="From"
-          value={fromDestination}
-          setValue={setFromDestination}
-        />
+      <form onSubmit={handleSubmit}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            maxWidth: 500,
+            margin: "2rem",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <CountrySelector
+              title="From"
+              value={fromDestination}
+              setValue={setFromDestination}
+            />
 
-        <CountrySelector
-          title="To"
-          value={toDestination}
-          setValue={setToDestination}
-        />
+            <CountrySelector
+              title="To"
+              value={toDestination}
+              setValue={setToDestination}
+            />
 
-        <TextField
-          id="outlined-basic"
-          label="First name"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
+            <FormControlLabel
+              control={<Checkbox defaultChecked color="secondary" />}
+              label="Roundtrip"
+              style={{ margin: "1rem" }}
+            />
+          </div>
 
-        <TextField
-          id="outlined-basic"
-          label="Last name"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
+          <TextField
+            id="outlined-basic"
+            label="First name"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="Email"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Last name"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="Phone number"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Email"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="Number of adults"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Phone number"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="Number of children"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
+          <TextField
+            id="outlined-basic"
+            label="Number of adults"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
 
-        <TextField
-          id="outlined-basic"
-          label="Number of veichles"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem" }}
-        />
-      </div>
-      <Button
-        variant="contained"
-        style={{
-          color: theme.palette.secondary.main,
-          borderRadius: 25,
-          marginBottom: "2rem",
-        }}
-      >
-        Submit
-      </Button>
+          <TextField
+            id="outlined-basic"
+            label="Number of children"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="Number of veichles"
+            variant="filled"
+            color="secondary"
+            style={{ margin: "1rem" }}
+          />
+        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          style={{
+            color: theme.palette.secondary.main,
+            borderRadius: 25,
+            marginBottom: "2rem",
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          Submit
+        </Button>
+      </form>
     </div>
   );
 };

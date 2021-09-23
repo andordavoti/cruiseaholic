@@ -18,12 +18,13 @@ const CountrySelector: FC<Props> = ({ title, value, setValue }) => {
         color="secondary"
         style={{ fontWeight: "normal" }}
       >
-        {title}: {value}
+        <strong>{title}:</strong> {value}
       </Typography>
 
       <div style={{ display: "flex" }}>
         {destinations.map(({ name, flagImg }) => (
           <div
+            key={name}
             style={{
               display: "flex",
               flexDirection: "column",
