@@ -2,6 +2,7 @@ import { TextField, Typography, Button, useTheme } from "@mui/material";
 import dayjs from "dayjs";
 import { FC, useState } from "react";
 import { useIsMobile } from "../hooks/useIsMobile";
+import CountrySelector from "./CountrySelector";
 
 const Booking: FC = () => {
   const theme = useTheme();
@@ -21,6 +22,9 @@ const Booking: FC = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+
+  const [fromDestination, setFromDestination] = useState("Oslo, Norway");
+  const [toDestination, setToDestination] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -71,6 +75,7 @@ const Booking: FC = () => {
         min={dayjs().format("YYYY-MM-DD")}
         max={dayjs().add(5, "year").format("YYYY-MM-DD")}
       /> */}
+
       <div
         style={{
           display: "flex",
@@ -81,6 +86,18 @@ const Booking: FC = () => {
           margin: "2rem",
         }}
       >
+        <CountrySelector
+          title="From"
+          value={fromDestination}
+          setValue={setFromDestination}
+        />
+
+        <CountrySelector
+          title="To"
+          value={toDestination}
+          setValue={setToDestination}
+        />
+
         <TextField
           id="outlined-basic"
           label="First name"
