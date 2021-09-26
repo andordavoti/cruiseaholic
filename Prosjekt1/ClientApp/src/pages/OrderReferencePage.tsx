@@ -1,7 +1,14 @@
 import { FC } from "react";
+import { RouteComponentProps } from "react-router-dom";
 
-const OrderReferencePage: FC = () => {
-  return <div></div>;
+interface MatchParams {
+  id: string;
+}
+
+interface Props extends RouteComponentProps<MatchParams> {}
+
+const OrderReferencePage: FC<Props> = ({ match }) => {
+  return <div>Reference number: {match.params.id}</div>;
 };
 
 export default OrderReferencePage;

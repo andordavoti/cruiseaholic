@@ -127,6 +127,10 @@ const Booking: FC = () => {
     }
   };
 
+  if (orderReference) {
+    return <Redirect to={`/order-reference/${orderReference}`} />;
+  }
+
   return (
     <div
       style={{
