@@ -1,18 +1,49 @@
 import {
   AppBar,
+  Box,
   Container,
+  Divider,
+  SwipeableDrawer,
   IconButton,
   Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Toolbar,
   Typography,
   useTheme,
+  makeStyles,
 } from "@material-ui/core";
-import { MdMailOutline } from "react-icons/md";
-import { Link as RouteLink } from "react-router-dom";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { MdMailOutline, MdClose } from "react-icons/md";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import logoImg from "../assets/logo.png";
+import { useIsMobile } from "../hooks/useIsMobile";
+
+const useStyles = makeStyles((theme) => ({
+  navItem: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "0.5rem",
+    marginRight: "1rem",
+  },
+  activeNav: {
+    color: `${theme.palette.secondary.main} !important`,
+  },
+  inActiveNav: {
+    color: "#5590C4",
+  },
+}));
 
 const Navbar: React.FC = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   const theme = useTheme();
+  const isMobile = useIsMobile();
+
+  const styles = useStyles();
   return (
     <AppBar
       color="primary"
@@ -33,7 +64,7 @@ const Navbar: React.FC = () => {
             maxHeight: "10vh",
           }}
         >
-          <RouteLink to="/">
+          <NavLink to="/">
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={logoImg} style={{ width: 50, height: 50 }} alt="logo" />
               <Typography
@@ -46,17 +77,158 @@ const Navbar: React.FC = () => {
                 Cruiseaholic
               </Typography>
             </div>
-          </RouteLink>
+          </NavLink>
 
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="mailto:s354356@oslomet.no"
-          >
-            <IconButton color="secondary">
-              <MdMailOutline size="2rem" />
-            </IconButton>
-          </Link>
+          {isMobile ? (
+            <Box>
+              <IconButton color="secondary" onClick={() => setDrawerOpen(true)}>
+                <HiMenuAlt3 size="2rem" />
+              </IconButton>
+
+              <SwipeableDrawer
+                anchor="right"
+                open={drawerOpen}
+                onOpen={() => setDrawerOpen(true)}
+                onClose={() => setDrawerOpen(false)}
+              >
+                <div
+                  style={{ width: 250, marginLeft: 15 }}
+                  onClick={() => setDrawerOpen(false)}
+                  onKeyDown={() => setDrawerOpen(false)}
+                >
+                  <div
+                    style={{
+                      width: 250,
+                      display: "flex",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <IconButton
+                      style={{ marginTop: 15, marginRight: 15 }}
+                      color="secondary"
+                    >
+                      <MdClose
+                        color={theme.palette.secondary.main}
+                        size="2rem"
+                      />
+                    </IconButton>
+                  </div>
+
+                  <List>
+                    <Link
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="mailto:s354356@oslomet.no"
+                    >
+                      <ListItem button>
+                        <ListItemIcon>
+                          <MdMailOutline
+                            color={theme.palette.secondary.main}
+                            size="2rem"
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Email"
+                          primaryTypographyProps={{ color: "secondary" }}
+                        />
+                      </ListItem>
+                    </Link>
+                  </List>
+                  <Divider />
+
+                  <List>
+                    <ListItem>
+                      <div className={styles.navItem}>
+                        <NavLink
+                          exact
+                          to="/"
+                          className={styles.inActiveNav}
+                          activeClassName={styles.activeNav}
+                        >
+                          <Typography
+                            color="inherit"
+                            variant="h6"
+                            className="navLink"
+                            style={{ fontWeight: "normal" }}
+                          >
+                            Home
+                          </Typography>
+                        </NavLink>
+                      </div>
+                    </ListItem>
+
+                    <ListItem>
+                      <div className={styles.navItem}>
+                        <NavLink
+                          exact
+                          to="/order-reference"
+                          className={styles.inActiveNav}
+                          activeClassName={styles.activeNav}
+                        >
+                          <Typography
+                            color="inherit"
+                            variant="h6"
+                            className="navLink"
+                            style={{ fontWeight: "normal" }}
+                          >
+                            Order reference
+                          </Typography>
+                        </NavLink>
+                      </div>
+                    </ListItem>
+                  </List>
+                </div>
+              </SwipeableDrawer>
+            </Box>
+          ) : (
+            <Box display="flex" alignItems="center">
+              <div className={styles.navItem}>
+                <NavLink
+                  exact
+                  to="/"
+                  className={styles.inActiveNav}
+                  activeClassName={styles.activeNav}
+                >
+                  <Typography
+                    color="inherit"
+                    variant="h6"
+                    className="navLink"
+                    style={{ fontWeight: "normal" }}
+                  >
+                    Home
+                  </Typography>
+                </NavLink>
+              </div>
+
+              <div className={styles.navItem}>
+                <NavLink
+                  exact
+                  to="/order-reference"
+                  className={styles.inActiveNav}
+                  activeClassName={styles.activeNav}
+                >
+                  <Typography
+                    color="inherit"
+                    variant="h6"
+                    className="navLink"
+                    style={{ fontWeight: "normal" }}
+                  >
+                    Order reference
+                  </Typography>
+                </NavLink>
+              </div>
+
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href="mailto:s354356@oslomet.no"
+              >
+                <IconButton color="secondary">
+                  <MdMailOutline size="2rem" />
+                </IconButton>
+              </Link>
+            </Box>
+          )}
         </Container>
       </Toolbar>
     </AppBar>
