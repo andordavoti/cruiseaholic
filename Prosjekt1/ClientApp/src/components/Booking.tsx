@@ -109,9 +109,8 @@ const Booking: FC = () => {
           },
         });
 
-        const referenceNumber = await res.json();
-
         if (res.status === 200) {
+          const referenceNumber = await res.json();
           setFormData(initialFormData);
           setCreditcardData(initialCreditcardData);
           toast.success("Booking was successfully registered");
