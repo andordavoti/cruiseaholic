@@ -1,4 +1,4 @@
-import { Typography, useTheme } from "@mui/material";
+import { Typography, useTheme } from "@material-ui/core";
 import { FC } from "react";
 import { destinations } from "../lib/destinations";
 
@@ -47,7 +47,7 @@ const CountrySelector: FC<Props> = ({ title, value, setValue }) => {
             <div
               style={{
                 width: 50,
-                height: 8,
+                height: 5,
                 marginTop: 5,
                 borderRadius: 10,
                 backgroundColor:

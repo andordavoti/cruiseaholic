@@ -3,59 +3,49 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PizzaBestilling.Models;
+using Cruisaholic.Models;
+using Microsoft.Extensions.Logging;
 
-namespace PizzaBestilling.DAL
+namespace Cruisaholic.DAL
 {
     public class OrderRepository : IOrderRepository
     {
 
         private readonly OrderContext _orderDB;
 
-        public OrderRepository(OrderContext orderDB)
+        private ILogger<OrderRepository> _orderLog;
+
+        public OrderRepository(OrderContext orderDB, ILogger<OrderRepository> orderLog)
         {
             _orderDB = orderDB;
+            _orderLog = orderLog;
+
         }
 
         [HttpPost]
-        public async Task<bool> NewOrder([FromBody] Order newOrder)
+        public async Task<int> NewOrder([FromBody] Order newOrder)
         {
             try
             {
                 _orderDB.Add(newOrder);
                 await _orderDB.SaveChangesAsync();
-                return true;
+                return newOrder.Id;
             }
-            catch
+            catch(Exception err)
             {
-                return false;
+                _orderLog.LogInformation("New order failed with exception: " + err);
+                return -1;
             }
 
         }
 
-        public async Task<bool> RemoveOrder(int id)
+
+        public async Task<Order> GetOrderById(int id)
         {
             try
             {
                 var order = await _orderDB.Orders.FindAsync(id);
-                _orderDB.Remove(order);
-                await _orderDB.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-
-        }
-
-        public async Task<List<Order>> GetAll()
-        {
-            try
-            {
-
-                List<Order> orders = await _orderDB.Orders.ToListAsync();
-                return orders;
+                return order;
             }
             catch
             {

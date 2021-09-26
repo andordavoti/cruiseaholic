@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PizzaBestilling.Models;
+using Cruisaholic.Models;
 
-namespace PizzaBestilling.DAL
+namespace Cruisaholic.DAL
 {
     public interface IOrderRepository
     {
         [HttpPost]
-        Task<bool> NewOrder([FromBody] Order newOrder);
-        Task<bool> RemoveOrder(int id);
-        Task<List<Order>> GetAll();
+        Task<int> NewOrder([FromBody] Order newOrder);
+        Task<Order> GetOrderById(int id);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace PizzaBestilling.Models
+namespace Cruisaholic.Models
 {
     public class OrderContext : DbContext
     {

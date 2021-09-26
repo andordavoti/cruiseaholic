@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTheme, Typography, Button, Box } from "@mui/material";
+import { useTheme, Typography, Button, Box } from "@material-ui/core";
 import { useIsMobile } from "../hooks/useIsMobile";
 import heroImg from "../assets/hero.jpg";
 
@@ -54,6 +54,7 @@ const Hero: FC<Props> = ({ onAction }) => {
         <Button
           onClick={onAction}
           variant="contained"
+          color="primary"
           style={{
             color: theme.palette.secondary.main,
             borderRadius: 25,

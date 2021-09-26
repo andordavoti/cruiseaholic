@@ -1,8 +1,8 @@
-import { ThemeOptions } from "@mui/material";
+import { ThemeOptions } from "@material-ui/core";
 
 export const themeOptions: ThemeOptions = {
   palette: {
-    mode: "light",
+    type: "light",
     primary: {
       main: "#c6e5f3",
     },

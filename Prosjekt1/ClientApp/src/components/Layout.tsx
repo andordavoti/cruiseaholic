@@ -1,9 +1,13 @@
-﻿import { Container } from "@mui/material";
+﻿import { Container } from "@material-ui/core";
 import { FC } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-const Layout: FC = ({ children }) => {
+interface Props {
+  children: JSX.Element;
+}
+
+const Layout: FC<Props> = ({ children }) => {
   return (
     <>
       <Navbar />

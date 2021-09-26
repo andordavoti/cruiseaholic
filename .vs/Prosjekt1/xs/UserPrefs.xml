@@ -1,15 +1,22 @@
-﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|PizzaBestilling">
+﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
   <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Controllers/OrderController.cs">
     <Files>
-      <File FileName="Prosjekt1/Startup.cs" Line="35" Column="9" />
+      <File FileName="Prosjekt1/Models/Order.cs" Line="50" Column="9" />
+      <File FileName="Prosjekt1/DAL/OrderRepository.cs" />
+      <File FileName="Prosjekt1/Controllers/OrderController.cs" Line="38" Column="1" />
+      <File FileName="Prosjekt1/DAL/IOrderRepository.cs" />
+      <File FileName="Prosjekt1/DAL/OrderContext.cs" />
+      <File FileName="Prosjekt1/Startup.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Prosjekt1" expanded="True">
             <Node name="Prosjekt1" expanded="True">
-              <Node name="Startup.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="OrderController.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

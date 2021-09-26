@@ -1,20 +1,13 @@
 import {
   AppBar,
-  Box,
   Container,
-  Divider,
   IconButton,
   Link,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Typography,
   useTheme,
-} from "@mui/material";
-import { HiMenuAlt3 } from "react-icons/hi";
-import { MdMailOutline, MdClose } from "react-icons/md";
+} from "@material-ui/core";
+import { MdMailOutline } from "react-icons/md";
 import { Link as RouteLink } from "react-router-dom";
 import logoImg from "../assets/logo.png";
 
