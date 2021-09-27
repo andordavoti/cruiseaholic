@@ -21,6 +21,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logoImg from "../assets/logo.png";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { ORDER_REFERENCE, ORDER_REFERENCE_NO_REFERENCE } from "../lib/navPaths";
 
 const useStyles = makeStyles((theme) => ({
   navItem: {
@@ -161,7 +162,7 @@ const Navbar: React.FC = () => {
                       <div className={styles.navItem}>
                         <NavLink
                           exact
-                          to="/order-reference"
+                          to={`/${ORDER_REFERENCE}/${ORDER_REFERENCE_NO_REFERENCE}`}
                           className={styles.inActiveNav}
                           activeClassName={styles.activeNav}
                         >
@@ -203,7 +204,7 @@ const Navbar: React.FC = () => {
               <div className={styles.navItem}>
                 <NavLink
                   exact
-                  to="/order-reference"
+                  to={`/${ORDER_REFERENCE}/${ORDER_REFERENCE_NO_REFERENCE}`}
                   className={styles.inActiveNav}
                   activeClassName={styles.activeNav}
                 >

@@ -15,6 +15,7 @@ import { toast } from "../App";
 import Cards, { Focused } from "react-credit-cards";
 import { valudateForm } from "../utils/validateForm";
 import { Redirect } from "react-router-dom";
+import { ORDER_REFERENCE } from "../lib/navPaths";
 
 const initialFormData = {
   firstName: "",
@@ -127,7 +128,7 @@ const Booking: FC = () => {
   };
 
   if (orderReference) {
-    return <Redirect to={`/order-reference/${orderReference}`} />;
+    return <Redirect to={`/${ORDER_REFERENCE}/${orderReference}`} />;
   }
 
   return (

@@ -12,6 +12,7 @@ import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import "react-credit-cards/es/styles-compiled.css";
 import OrderReferencePage from "./pages/OrderReferencePage";
+import { ORDER_REFERENCE } from "./lib/navPaths";
 
 export const toast = new Notyf();
 
@@ -26,7 +27,7 @@ const App: FC = () => {
             <Route exact path="/" component={HomePage} />
             <Route
               exact
-              path="/order-reference/:id"
+              path={`/${ORDER_REFERENCE}/:id`}
               component={OrderReferencePage}
             />
           </>
