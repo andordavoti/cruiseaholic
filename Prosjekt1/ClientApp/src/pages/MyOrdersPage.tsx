@@ -56,9 +56,8 @@ const MyOrdersPage: FC<Props> = ({
         if (res.status === 200) {
           const data = await res.json();
           setOrder(data);
-        } else {
+        } else if (res.status === 404) {
           setOrder(null);
-          toast.error(`Could not get orders for ${customerEmail}`);
         }
       } catch (err) {
         console.log(err);
@@ -80,7 +79,7 @@ const MyOrdersPage: FC<Props> = ({
             align="center"
             style={{ fontWeight: "normal", marginBottom: "1rem" }}
           >
-            No order found for reference number {customerEmail}
+            No orders found for email: {customerEmail}
           </Typography>
 
           <Button
