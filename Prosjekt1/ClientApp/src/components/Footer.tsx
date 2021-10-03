@@ -1,17 +1,17 @@
 import { FC } from "react";
-import { Box, Typography, useTheme } from "@material-ui/core";
+import { Typography, useTheme } from "@material-ui/core";
 
 const Footer: FC = () => {
   const theme = useTheme();
-
   return (
-    <Box
+    <footer
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "space-evenly",
         backgroundColor: theme.palette.primary.main,
         padding: "2rem 0.5rem",
+        marginTop: "auto",
       }}
     >
       <Typography
@@ -22,7 +22,7 @@ const Footer: FC = () => {
       >
         © {new Date().getFullYear()} Cruiseaholic
       </Typography>
-    </Box>
+    </footer>
   );
 };
 
