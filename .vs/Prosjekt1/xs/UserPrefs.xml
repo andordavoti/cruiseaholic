@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
   <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Models/Order.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/DAL/DBInit.cs">
     <Files>
-      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="100" Column="14" />
+      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="33" Column="13" />
       <File FileName="Prosjekt1/DAL/IOrderRepository.cs" Line="13" Column="24" />
       <File FileName="Prosjekt1/Controllers/OrderController.cs" Line="46" Column="55" />
-      <File FileName="Prosjekt1/Startup.cs" Line="30" Column="97" />
+      <File FileName="Prosjekt1/Startup.cs" Line="30" Column="17" />
       <File FileName="Prosjekt1/Models/Customer.cs" Line="1" Column="1" />
-      <File FileName="Prosjekt1/Models/Order.cs" Line="20" Column="32" />
+      <File FileName="Prosjekt1/Models/Order.cs" Line="46" Column="2" />
+      <File FileName="Prosjekt1/Models/Route.cs" Line="24" Column="32" />
+      <File FileName="Prosjekt1/DAL/DBInit.cs" Line="39" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,10 +17,10 @@
           <Node name="Prosjekt1" expanded="True">
             <Node name="Prosjekt1" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Order.cs" selected="True" />
+              <Node name="DAL" expanded="True">
+                <Node name="DBInit.cs" selected="True" />
               </Node>
+              <Node name="Models" expanded="True" />
             </Node>
           </Node>
         </State>

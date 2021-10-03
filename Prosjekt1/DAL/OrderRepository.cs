@@ -32,7 +32,7 @@ namespace Cruisaholic.DAL
 
             try
             {
-                existingCustomer = await _orderDB.Customer.SingleAsync(customer => customer.Email == newOrder.Email);
+                existingCustomer = await _orderDB.Customer.SingleAsync(customer => customer.Email.Equals(newOrder.Email));
             }
             catch
             {
@@ -62,7 +62,7 @@ namespace Cruisaholic.DAL
             _orderLog.LogInformation("Customer: ");
             _orderLog.LogInformation(JsonConvert.SerializeObject(customer));
 
-            var route = await _orderDB.Route.SingleAsync(route => route.ToDestination == newOrder.ToDestination && route.FromDestination == newOrder.FromDestination);
+            var route = await _orderDB.Route.SingleAsync(route => route.ToDestination.Equals(newOrder.ToDestination) && route.FromDestination.Equals(newOrder.FromDestination));
 
             _orderLog.LogInformation("Route: ");
             _orderLog.LogInformation(JsonConvert.SerializeObject(route));
