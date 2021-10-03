@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Cruisaholic.DAL;
 using Cruisaholic.Models;
 using Microsoft.Extensions.Logging;
+using Prosjekt1.DAL;
+using Newtonsoft.Json;
 
 namespace Cruisaholic
 {
@@ -24,7 +25,11 @@ namespace Cruisaholic
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
             services.AddDbContext<OrderContext>(options => options.UseSqlite("Data source=Order.db"));
             services.AddScoped<IOrderRepository, OrderRepository>();
 
@@ -41,6 +46,7 @@ namespace Cruisaholic
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                DBInit.init(app);
                 loggerFactory.AddFile("Logs/OrdersLog.txt");
             }
             else

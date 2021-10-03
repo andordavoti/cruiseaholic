@@ -10,12 +10,14 @@ import {
 import dayjs, { Dayjs } from "dayjs";
 import Payment from "payment";
 import { FC, useEffect, useRef, useState } from "react";
-import CountrySelector from "./CountrySelector";
+import DestinationSelector from "../components/DestinationSelector";
 import { toast } from "../App";
 import Cards, { Focused } from "react-credit-cards";
 import { valudateForm } from "../utils/validateForm";
 import { Redirect } from "react-router-dom";
-import { ORDER_REFERENCE } from "../lib/navPaths";
+import { CustomerOrder, Route } from "../../types";
+import { getFromDestinations } from "../utils/getFromDestinations";
+import { getTotalPrice } from "../utils/getTotalPrice";
 
 const initialFormData = {
   firstName: "",
@@ -43,10 +45,15 @@ const initialCreditcardData: CreditcardDataType = {
   number: "",
 };
 
-const Booking: FC = () => {
+const BookingPage: FC = () => {
   const theme = useTheme();
 
   const expiryRef = useRef<null | HTMLInputElement>(null);
+
+  const [routes, setRoutes] = useState<Route[]>([]);
+  const [selectedRoute, setSelectedRoute] = useState<undefined | Route>(
+    undefined
+  );
 
   const [orderReference, setOrderReference] = useState<null | number>(null);
 
@@ -55,15 +62,49 @@ const Booking: FC = () => {
 
   const [isRoundtrip, setIsRoundtrip] = useState(true);
 
-  const [fromDestination, setFromDestination] = useState("Oslo, Norway");
-  const [toDestination, setToDestination] = useState("Strømstad, Sweden");
+  const [fromDestination, setFromDestination] = useState("");
+  const [toDestination, setToDestination] = useState("");
 
   const [departureDate, setDepartureDate] = useState<null | Dayjs>(dayjs());
   const [arrivalDate, setArrivalDate] = useState<null | Dayjs>(dayjs());
 
   useEffect(() => {
+    if (!routes || !fromDestination?.length || !toDestination?.length) {
+      setSelectedRoute(undefined);
+    } else if (routes && fromDestination && toDestination) {
+      const route = routes.find(
+        (r) =>
+          r.fromDestination === fromDestination &&
+          r.toDestination === toDestination
+      );
+
+      setSelectedRoute(route);
+    }
+  }, [fromDestination, routes, toDestination]);
+
+  useEffect(() => {
     if (expiryRef.current) Payment.formatCardExpiry(expiryRef.current);
   }, [creditcardData.expiry]);
+
+  useEffect(() => {
+    const fetchRoutes = async () => {
+      try {
+        const res = await fetch("order/getRoutes");
+
+        if (res.status === 200) {
+          const data = await res.json();
+          setRoutes(data);
+        } else {
+          toast.error("Something went wrong getting available routes");
+        }
+      } catch (err) {
+        console.log(err);
+        toast.error("Something went wrong getting available routes");
+      }
+    };
+
+    fetchRoutes();
+  }, []);
 
   const handleCreditcardInputChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -85,7 +126,7 @@ const Booking: FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = {
+    const data: CustomerOrder = {
       ...formData,
       isRoundtrip,
       fromDestination,
@@ -128,7 +169,7 @@ const Booking: FC = () => {
   };
 
   if (orderReference) {
-    return <Redirect to={`/${ORDER_REFERENCE}/${orderReference}`} />;
+    return <Redirect to={`/my-orders/${orderReference}`} />;
   }
 
   return (
@@ -153,29 +194,37 @@ const Booking: FC = () => {
           flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "center",
-          maxWidth: 500,
+          maxWidth: 600,
           margin: "2rem",
         }}
       >
+        <DestinationSelector
+          label="From destination"
+          value={fromDestination}
+          setValue={setFromDestination}
+          options={routes ? getFromDestinations(routes) : null}
+        />
+
+        <DestinationSelector
+          label="To destination"
+          value={toDestination}
+          setValue={setToDestination}
+          options={
+            routes
+              ? routes
+                  ?.filter((route) => route.fromDestination === fromDestination)
+                  .map((route) => route.toDestination)
+              : null
+          }
+        />
+
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            width: "100vw",
+            justifyContent: "center",
           }}
         >
-          <CountrySelector
-            title="From"
-            value={fromDestination}
-            setValue={setFromDestination}
-          />
-
-          <CountrySelector
-            title="To"
-            value={toDestination}
-            setValue={setToDestination}
-          />
-
           <FormControlLabel
             control={
               <Checkbox
@@ -188,7 +237,16 @@ const Booking: FC = () => {
             label="Roundtrip"
             style={{ margin: "1rem" }}
           />
+        </div>
 
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            width: "100vw",
+            justifyContent: "center",
+          }}
+        >
           <KeyboardDatePicker
             autoOk
             color="secondary"
@@ -200,7 +258,7 @@ const Booking: FC = () => {
             minDate={dayjs()}
             InputAdornmentProps={{ position: "start" }}
             onChange={setDepartureDate}
-            style={{ margin: "1rem" }}
+            style={{ margin: "1rem", minWidth: 240 }}
           />
 
           {isRoundtrip && (
@@ -215,10 +273,11 @@ const Booking: FC = () => {
               minDate={dayjs()}
               InputAdornmentProps={{ position: "start" }}
               onChange={setArrivalDate}
-              style={{ margin: "1rem" }}
+              style={{ margin: "1rem", minWidth: 240 }}
             />
           )}
         </div>
+
         <TextField
           required
           name="firstName"
@@ -226,7 +285,7 @@ const Booking: FC = () => {
           label="First name"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.firstName}
           onChange={handleChange}
         />
@@ -237,7 +296,7 @@ const Booking: FC = () => {
           label="Last name"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.lastName}
           onChange={handleChange}
         />
@@ -248,7 +307,7 @@ const Booking: FC = () => {
           label="Email"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.email}
           onChange={handleChange}
         />
@@ -259,7 +318,7 @@ const Booking: FC = () => {
           label="Phone number"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.phoneNumber}
           onChange={handleChange}
         />
@@ -267,10 +326,17 @@ const Booking: FC = () => {
           required
           name="numberOfAdults"
           type="number"
-          label="Number of adults"
+          label={`Number of adults${
+            !!selectedRoute &&
+            ` (${
+              isRoundtrip
+                ? selectedRoute.priceAdults * 2
+                : selectedRoute.priceAdults
+            } NOK)`
+          }`}
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.numberOfAdults}
           onChange={handleChange}
           inputProps={{ min: "0" }}
@@ -279,10 +345,17 @@ const Booking: FC = () => {
           required
           name="numberOfChildren"
           type="number"
-          label="Number of children"
+          label={`Number of children${
+            !!selectedRoute &&
+            ` (${
+              isRoundtrip
+                ? selectedRoute.priceChildren * 2
+                : selectedRoute.priceChildren
+            } NOK)`
+          }`}
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.numberOfChildren}
           onChange={handleChange}
           inputProps={{ min: "0" }}
@@ -291,16 +364,30 @@ const Booking: FC = () => {
           required
           name="numberOfVehicles"
           type="number"
-          label="Number of vehicles"
+          label={`Number of vehicles${
+            !!selectedRoute &&
+            ` (${
+              isRoundtrip
+                ? selectedRoute.priceVehicle * 2
+                : selectedRoute.priceVehicle
+            } NOK)`
+          }`}
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={formData.numberOfVehicles}
           onChange={handleChange}
           inputProps={{ min: "0" }}
         />
 
-        <div style={{ margin: "1rem" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "100vw",
+            justifyContent: "center",
+            margin: "1rem",
+          }}
+        >
           <Cards
             cvc={creditcardData.cvc}
             expiry={creditcardData.expiry}
@@ -317,7 +404,7 @@ const Booking: FC = () => {
           label="Card Number"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={creditcardData.number}
           onChange={handleCreditcardInputChange}
         />
@@ -329,7 +416,7 @@ const Booking: FC = () => {
           label="Cardholder Name"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={creditcardData.name}
           onChange={handleCreditcardInputChange}
         />
@@ -341,7 +428,7 @@ const Booking: FC = () => {
           label="CVC"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={creditcardData.cvc}
           onChange={handleCreditcardInputChange}
         />
@@ -354,7 +441,7 @@ const Booking: FC = () => {
           label="Expiry (MM/YY)"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem" }}
+          style={{ margin: "1rem", minWidth: 240 }}
           value={creditcardData.expiry.replaceAll(" ", "")}
           onChange={handleCreditcardInputChange}
         />
@@ -363,11 +450,29 @@ const Booking: FC = () => {
           style={{
             width: "100%",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             marginTop: "1rem",
           }}
         >
+          <Typography color="textPrimary" variant="h6" align="center">
+            Total price:
+            <Typography
+              color="textPrimary"
+              variant="h6"
+              style={{ fontWeight: "normal", marginLeft: "0.5rem" }}
+            >
+              {getTotalPrice(
+                selectedRoute,
+                formData.numberOfAdults,
+                formData.numberOfChildren,
+                formData.numberOfVehicles,
+                isRoundtrip
+              )}
+            </Typography>
+          </Typography>
+
           <Button
             type="submit"
             variant="contained"
@@ -375,6 +480,7 @@ const Booking: FC = () => {
             style={{
               color: theme.palette.secondary.main,
               borderRadius: 25,
+              marginTop: "1rem",
             }}
           >
             Submit
@@ -385,4 +491,4 @@ const Booking: FC = () => {
   );
 };
 
-export default Booking;
+export default BookingPage;

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Cruisaholic.DAL;
 using Cruisaholic.Models;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Cruisaholic.Controllers
 {
@@ -24,59 +21,50 @@ namespace Cruisaholic.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> NewOrder([FromBody] Order newOrder)
+        public async Task<ActionResult> NewOrder([FromBody] CustomerOrder newOrder)
         {
             if (ModelState.IsValid)
             {
-                var orderId = await _orderDB.NewOrder(newOrder);
-
-                if (orderId == -1)
+                try
                 {
-                    _orderLog.LogInformation("Something went wrong saving the order!");
+                    var customerEmail = await _orderDB.NewOrder(newOrder);
+                    return Ok(customerEmail);
+                }
+                catch(Exception err)
+                {
+                    _orderLog.LogInformation("Something went wrong saving the order! Err: " + err);
                     return BadRequest("Something went wrong saving the order!");
                 }
-                return Ok(orderId);
             }
-            _orderLog.LogInformation("Model validation of Order:");
 
-            _orderLog.LogInformation("Property FirstName: " + ModelState.GetValidationState("FirstName"));
-            _orderLog.LogInformation("Property LastName: " + ModelState.GetValidationState("LastName"));
-            _orderLog.LogInformation("Property Email: " + ModelState.GetValidationState("Email"));
-            _orderLog.LogInformation("Property PhoneNumber: " + ModelState.GetValidationState("PhoneNumber"));
-            _orderLog.LogInformation("Property NumberOfChildren: " + ModelState.GetValidationState("NumberOfChildren"));
-            _orderLog.LogInformation("Property NumberOfAdults: " + ModelState.GetValidationState("NumberOfAdults"));
-            _orderLog.LogInformation("Property NumberOfVehicles: " + ModelState.GetValidationState("NumberOfVehicles"));
-            _orderLog.LogInformation("Property IsRoundtrip: " + ModelState.GetValidationState("IsRoundtrip"));
-            _orderLog.LogInformation("Property FromDestination: " + ModelState.GetValidationState("FromDestination"));
-            _orderLog.LogInformation("Property ToDestination: " + ModelState.GetValidationState("ToDestination"));
-            _orderLog.LogInformation("Property DepartureDate: " + ModelState.GetValidationState("DepartureDate"));
-            _orderLog.LogInformation("Property ArrivalDate: " + ModelState.GetValidationState("ArrivalDate"));
-
-
-            _orderLog.LogInformation("Property CardNumber: " + ModelState.GetValidationState("CardNumber"));
-            _orderLog.LogInformation("Property CardholderName: " + ModelState.GetValidationState("CardholderName"));
-            _orderLog.LogInformation("Property CVC: " + ModelState.GetValidationState("CVC"));
-            _orderLog.LogInformation("Property Expiry: " + ModelState.GetValidationState("Expiry"));
-
-            _orderLog.LogInformation("Total error count: " + ModelState.ErrorCount);
-
-
-
-            return BadRequest("Model not valid in NewOrder!" + ModelState.ErrorCount);
+            return BadRequest("Model not valid in NewOrder! Number of errors: " + ModelState.ErrorCount);
         }
 
 
-        public async Task<ActionResult> GetOrderById(int id)
+        public async Task<ActionResult> GetCustomerInfo(string email)
         {
-            var order = await _orderDB.GetOrderById(id);
+            var customerInfo = await _orderDB.GetCustomerInfo(email);
 
-            if (order == null)
+            if (customerInfo == null)
             {
-                _orderLog.LogInformation("Order with id: " + id + ", was not found");
-                return NotFound("Order with id: " + id + ", was not found");
+                _orderLog.LogInformation("Customer with email: " + email+ ", was not found");
+                return NotFound("Customer with email: " + email + ", was not found");
             }
 
-            return Ok(order);
+            return Ok(customerInfo);
+        }
+
+        public async Task<ActionResult> GetRoutes()
+        {
+            var routes = await _orderDB.GetRoutes();
+
+            if (routes == null)
+            {
+                _orderLog.LogInformation("Routes not set up correcly in DB");
+                return NotFound("Routes not set up correcly in DB");
+            }
+
+            return Ok(routes);
         }
 
     }

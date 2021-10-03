@@ -11,8 +11,8 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Notyf } from "notyf";
 import "notyf/notyf.min.css";
 import "react-credit-cards/es/styles-compiled.css";
-import OrderReferencePage from "./pages/OrderReferencePage";
-import { ORDER_REFERENCE } from "./lib/navPaths";
+import MyOrdersPage from "./pages/MyOrdersPage";
+import BookingPage from "./pages/BookingPage";
 
 export const toast = new Notyf();
 
@@ -25,11 +25,8 @@ const App: FC = () => {
         <Layout>
           <>
             <Route exact path="/" component={HomePage} />
-            <Route
-              exact
-              path={`/${ORDER_REFERENCE}/:id`}
-              component={OrderReferencePage}
-            />
+            <Route exact path="/booking" component={BookingPage} />
+            <Route exact path={`/my-orders/:email?`} component={MyOrdersPage} />
           </>
         </Layout>
       </MuiPickersUtilsProvider>

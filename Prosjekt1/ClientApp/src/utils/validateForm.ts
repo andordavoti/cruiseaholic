@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { toast } from "../App";
-import { CustomerOrder } from "../types/Order";
+import { CustomerOrder } from "../../types";
 
 export const valudateForm = (formData: CustomerOrder): boolean => {
   const {

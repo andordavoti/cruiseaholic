@@ -2,10 +2,8 @@
 
 namespace Cruisaholic.Models
 {
-    public class Order
+    public class CustomerOrder 
     {
-        public int Id { get; set; }
-
         // TRIP
         [Required]
         public int NumberOfAdults { get; set; }
@@ -39,8 +37,30 @@ namespace Cruisaholic.Models
         [RegularExpression(@"^[0-9 \/]{5}$")]
         public string Expiry { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        // CUSTOMER
+        [Required]
+        [RegularExpression(@"^[A-Za-zæøåÆØÅ0-9_\-,\. ]+@[a-zA-Z0-9]+\.[a-zA-Z]+$")]
+        public string Email { get; set; }
 
-        public virtual Route Route { get; set; }
+        [Required]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{2,20}$")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{2,20}$")]
+        public string LastName { get; set; }
+
+        [Required]
+        [RegularExpression(@"^(?:\+[0-9]{10}|[0-9]{8})$")]
+        public string PhoneNumber { get; set; }
+
+        // ROUTE
+        [Required]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-,]{2,40}$")]
+        public string FromDestination { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-,]{2,40}$")]
+        public string ToDestination { get; set; }
     }
 }

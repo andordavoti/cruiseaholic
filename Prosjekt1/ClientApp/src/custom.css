@@ -16,32 +16,11 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-.navLink {
-  position: relative;
-  display: inline-block;
-  font-size: 16px;
-  line-height: 24px;
-  height: 24px;
-  text-decoration: none;
-}
-
-.navLink::after {
-  content: "";
-  position: absolute;
-  display: block;
-  bottom: -7px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  border-bottom: 2px solid #225c8f;
-}
-
 .navLink,
 .navLink::after {
   transition: all 0.3s ease;
 }
 
-.navLink:hover::after {
-  left: 0;
-  width: 100%;
+.navLink:hover {
+  color: #225c8f;
 }

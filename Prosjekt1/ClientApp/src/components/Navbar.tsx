@@ -21,7 +21,6 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logoImg from "../assets/logo.png";
 import { useIsMobile } from "../hooks/useIsMobile";
-import { ORDER_REFERENCE, ORDER_REFERENCE_NO_REFERENCE } from "../lib/navPaths";
 
 const useStyles = makeStyles((theme) => ({
   navItem: {
@@ -162,7 +161,7 @@ const Navbar: React.FC = () => {
                       <div className={styles.navItem}>
                         <NavLink
                           exact
-                          to={`/${ORDER_REFERENCE}/${ORDER_REFERENCE_NO_REFERENCE}`}
+                          to="/booking"
                           className={styles.inActiveNav}
                           activeClassName={styles.activeNav}
                         >
@@ -172,7 +171,26 @@ const Navbar: React.FC = () => {
                             className="navLink"
                             style={{ fontWeight: "normal" }}
                           >
-                            Order reference
+                            Booking
+                          </Typography>
+                        </NavLink>
+                      </div>
+                    </ListItem>
+
+                    <ListItem>
+                      <div className={styles.navItem}>
+                        <NavLink
+                          to="/my-orders"
+                          className={styles.inActiveNav}
+                          activeClassName={styles.activeNav}
+                        >
+                          <Typography
+                            color="inherit"
+                            variant="h6"
+                            className="navLink"
+                            style={{ fontWeight: "normal" }}
+                          >
+                            My orders
                           </Typography>
                         </NavLink>
                       </div>
@@ -204,7 +222,7 @@ const Navbar: React.FC = () => {
               <div className={styles.navItem}>
                 <NavLink
                   exact
-                  to={`/${ORDER_REFERENCE}/${ORDER_REFERENCE_NO_REFERENCE}`}
+                  to="/booking"
                   className={styles.inActiveNav}
                   activeClassName={styles.activeNav}
                 >
@@ -214,7 +232,24 @@ const Navbar: React.FC = () => {
                     className="navLink"
                     style={{ fontWeight: "normal" }}
                   >
-                    Order reference
+                    Booking
+                  </Typography>
+                </NavLink>
+              </div>
+
+              <div className={styles.navItem}>
+                <NavLink
+                  to="/my-orders"
+                  className={styles.inActiveNav}
+                  activeClassName={styles.activeNav}
+                >
+                  <Typography
+                    color="inherit"
+                    variant="h6"
+                    className="navLink"
+                    style={{ fontWeight: "normal" }}
+                  >
+                    My orders
                   </Typography>
                 </NavLink>
               </div>

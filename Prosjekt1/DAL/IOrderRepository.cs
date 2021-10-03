@@ -9,7 +9,8 @@ namespace Cruisaholic.DAL
     public interface IOrderRepository
     {
         [HttpPost]
-        Task<int> NewOrder([FromBody] Order newOrder);
-        Task<Order> GetOrderById(int id);
+        Task<string> NewOrder([FromBody] CustomerOrder newOrder);
+        Task<Customer> GetCustomerInfo(string email);
+        Task<List<Route>> GetRoutes();
     }
 }

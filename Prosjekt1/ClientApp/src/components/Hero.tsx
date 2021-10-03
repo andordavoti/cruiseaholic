@@ -2,12 +2,9 @@ import { FC } from "react";
 import { useTheme, Typography, Button, Box } from "@material-ui/core";
 import { useIsMobile } from "../hooks/useIsMobile";
 import heroImg from "../assets/hero.jpg";
+import { Link } from "react-router-dom";
 
-interface Props {
-  onAction: () => void;
-}
-
-const Hero: FC<Props> = ({ onAction }) => {
+const Hero: FC = () => {
   const theme = useTheme();
   const isMobile = useIsMobile();
   return (
@@ -51,20 +48,21 @@ const Hero: FC<Props> = ({ onAction }) => {
 
         <Box m="2rem" />
 
-        <Button
-          onClick={onAction}
-          variant="contained"
-          color="primary"
-          style={{
-            color: theme.palette.secondary.main,
-            borderRadius: 25,
-            display: isMobile ? "block" : undefined,
-            marginLeft: isMobile ? "auto" : undefined,
-            marginRight: isMobile ? "auto" : undefined,
-          }}
-        >
-          Book cruise
-        </Button>
+        <Link to="/booking">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{
+              color: theme.palette.secondary.main,
+              borderRadius: 25,
+              display: isMobile ? "block" : undefined,
+              marginLeft: isMobile ? "auto" : undefined,
+              marginRight: isMobile ? "auto" : undefined,
+            }}
+          >
+            Book cruise
+          </Button>
+        </Link>
       </div>
       <img
         style={{
