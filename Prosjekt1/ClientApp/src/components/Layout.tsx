@@ -11,14 +11,14 @@ const Layout: FC<Props> = ({ children }) => {
   const navRef = useRef<null | HTMLDivElement>(null);
   const footerRef = useRef<null | HTMLDivElement>(null);
   return (
-    <div style={{ minHeight: "100vh" }}>
+    <>
       <div ref={navRef}>
         <Navbar />
       </div>
 
       <Container
         style={{
-          minHeight: `calc(100vh - ${navRef.current?.clientHeight || 0}px - ${
+          minHeight: `calc(100vh - (${navRef.current?.clientHeight || 0}px + ${
             footerRef.current?.clientHeight || 0
           }px)`,
         }}
@@ -29,7 +29,7 @@ const Layout: FC<Props> = ({ children }) => {
       <div ref={footerRef}>
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
 
