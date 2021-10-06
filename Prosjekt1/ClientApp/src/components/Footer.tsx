@@ -11,7 +11,7 @@ const Footer: FC = () => {
         justifyContent: "space-evenly",
         backgroundColor: theme.palette.primary.main,
         padding: "2rem 0.5rem",
-        marginTop: "auto",
+        flexShrink: 0,
       }}
     >
       <Typography

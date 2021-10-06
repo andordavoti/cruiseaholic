@@ -9,11 +9,13 @@ interface Props {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      <Navbar />
-      <Container>{children}</Container>
+    <>
+      <div className="content-wrapper">
+        <Navbar />
+        <Container>{children}</Container>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
