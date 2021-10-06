@@ -38,7 +38,7 @@ export interface CustomerInfo {
   orders: Order[];
 }
 
-interface Order {
+export interface Order {
   id: number;
 
   // TRIP

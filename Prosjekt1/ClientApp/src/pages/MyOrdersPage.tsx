@@ -11,8 +11,8 @@ import { FC, useEffect, useState } from "react";
 import { Redirect, RouteComponentProps } from "react-router-dom";
 import { CustomerInfo } from "../../types";
 import { toast } from "../App";
+import OrderCard from "../components/OrderCard";
 import ReferenceField from "../components/ReferenceField";
-import { getTotalPrice } from "../utils/getTotalPrice";
 
 interface MatchParams {
   email?: string;
@@ -118,59 +118,9 @@ const MyOrdersPage: FC<Props> = ({
           >
             Orders
           </Typography>
-          {orders.map(
-            ({
-              id,
-              numberOfAdults,
-              numberOfChildren,
-              numberOfVehicles,
-              arrivalDate,
-              departureDate,
-              route,
-              isRoundtrip,
-            }) => (
-              <div key={id}>
-                <Typography
-                  color="textPrimary"
-                  variant="h5"
-                  style={{ marginTop: "2rem", marginBottom: "1rem" }}
-                >
-                  Order {id}:
-                </Typography>
-                <ReferenceField
-                  field="From destination"
-                  value={route.fromDestination}
-                />
-                <ReferenceField
-                  field="To destination"
-                  value={route.toDestination}
-                />
-                {!!departureDate && (
-                  <ReferenceField
-                    field="Departure date"
-                    value={departureDate}
-                  />
-                )}
-                {!!arrivalDate && (
-                  <ReferenceField field="Arrival date" value={arrivalDate} />
-                )}
-                <ReferenceField field="Adults" value={numberOfAdults} />
-                <ReferenceField field="Children" value={numberOfChildren} />
-                <ReferenceField field="Vehicles" value={numberOfVehicles} />
-                <ReferenceField
-                  field="Total price"
-                  value={getTotalPrice(
-                    route,
-                    numberOfAdults,
-                    numberOfChildren,
-                    numberOfVehicles,
-                    isRoundtrip
-                  )}
-                  isLast
-                />
-              </div>
-            )
-          )}
+          {orders.map((order, index) => (
+            <OrderCard key={index} order={order} />
+          ))}
 
           <Button
             onClick={() => {

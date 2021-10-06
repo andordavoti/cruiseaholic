@@ -1,10 +1,17 @@
 import { FC } from "react";
 import { useTheme, Typography, Button, Box } from "@material-ui/core";
 import { useIsMobile } from "../hooks/useIsMobile";
-import heroImg from "../assets/hero.jpg";
 import { Link } from "react-router-dom";
 
-const Hero: FC = () => {
+interface Props {
+  title: string;
+  subText: string;
+  btnText: string;
+  img: string;
+  reverse?: boolean;
+}
+
+const Hero: FC<Props> = ({ title, subText, btnText, img, reverse = false }) => {
   const theme = useTheme();
   const isMobile = useIsMobile();
   return (
@@ -12,11 +19,12 @@ const Hero: FC = () => {
       style={{
         backgroundColor: theme.palette.background.default,
         display: "flex",
-        flexDirection: "row",
+        flexDirection: reverse ? "row-reverse" : "row",
         flexWrap: "wrap",
         justifyContent: "space-evenly",
         alignItems: "center",
         paddingTop: "2rem",
+        paddingBottom: "2rem",
       }}
     >
       <div
@@ -32,7 +40,7 @@ const Hero: FC = () => {
           variant="h3"
           align={isMobile ? "center" : "left"}
         >
-          A sea of options
+          {title}
         </Typography>
 
         <Box m="2rem" />
@@ -43,7 +51,7 @@ const Hero: FC = () => {
           align={isMobile ? "center" : "left"}
           style={{ fontWeight: "normal" }}
         >
-          Book your next, well deserved vacation, with us.
+          {subText}
         </Typography>
 
         <Box m="2rem" />
@@ -60,7 +68,7 @@ const Hero: FC = () => {
               marginRight: isMobile ? "auto" : undefined,
             }}
           >
-            Book cruise
+            {btnText}
           </Button>
         </Link>
       </div>
@@ -74,7 +82,7 @@ const Hero: FC = () => {
           borderColor: theme.palette.text.primary,
           margin: isMobile ? "2rem" : undefined,
         }}
-        src={heroImg}
+        src={img}
         alt=""
       />
     </div>
