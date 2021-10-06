@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import dayjs, { Dayjs } from "dayjs";
 import Payment from "payment";
 import { FC, useEffect, useRef, useState } from "react";
@@ -11,6 +11,7 @@ import { getFromDestinations } from "../utils/getFromDestinations";
 import MultistepBooking from "../components/MultistepBooking";
 import TripDetailsFormFields from "../components/TripDetailsFormFields";
 import PaymentFormFields from "../components/PaymentFormFields";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 const initialFormData = {
   firstName: "",
@@ -40,8 +41,31 @@ const initialCreditcardData: CreditcardDataType = {
   number: "",
 };
 
+const useStyles = makeStyles({
+  form: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "auto",
+    marginRight: "auto",
+    maxWidth: 600,
+  },
+  formMobile: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    maxWidth: 600,
+  },
+});
+
 const BookingPage: FC = () => {
   const [activeStep, setActiveStep] = useState(0);
+
+  const isMobile = useIsMobile();
+
+  const styles = useStyles();
 
   const expiryRef = useRef<null | HTMLInputElement>(null);
 
@@ -197,80 +221,101 @@ const BookingPage: FC = () => {
         Booking
       </Typography>
 
-      <MultistepBooking
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
-        tripDetails={
-          <form
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-              maxWidth: 600,
+      {isMobile ? (
+        <form className={styles.formMobile} onSubmit={handleSubmit}>
+          <TripDetailsFormFields
+            {...{
+              fromDestination,
+              setFromDestination,
+              toDestination,
+              setToDestination,
+              isRoundtrip,
+              setIsRoundtrip,
+              departureDate,
+              setDepartureDate,
+              arrivalDate,
+              setArrivalDate,
+              formData,
+              handleChange,
+              selectedRoute,
             }}
-            onSubmit={handleSubmitTripInfo}
-          >
-            <TripDetailsFormFields
-              {...{
-                fromDestination,
-                setFromDestination,
-                toDestination,
-                setToDestination,
-                isRoundtrip,
-                setIsRoundtrip,
-                departureDate,
-                setDepartureDate,
-                arrivalDate,
-                setArrivalDate,
-                formData,
-                handleChange,
-                selectedRoute,
-              }}
-              fromDestinationOptions={
-                routes ? getFromDestinations(routes) : null
-              }
-              toDestinationOptions={
-                routes
-                  ? routes
-                      ?.filter(
-                        (route) => route.fromDestination === fromDestination
-                      )
-                      .map((route) => route.toDestination)
-                  : null
-              }
-            />
-          </form>
-        }
-        paymentDetails={
-          <form
-            onSubmit={handleSubmit}
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-              maxWidth: 600,
+            fromDestinationOptions={routes ? getFromDestinations(routes) : null}
+            toDestinationOptions={
+              routes
+                ? routes
+                    ?.filter(
+                      (route) => route.fromDestination === fromDestination
+                    )
+                    .map((route) => route.toDestination)
+                : null
+            }
+          />
+          <PaymentFormFields
+            {...{
+              creditcardData,
+              handleCreditcardInputChange,
+              expiryRef,
+              selectedRoute,
+              formData,
+              isRoundtrip,
             }}
-          >
-            <PaymentFormFields
-              {...{
-                creditcardData,
-                handleCreditcardInputChange,
-                expiryRef,
-                selectedRoute,
-                formData,
-                isRoundtrip,
-              }}
-              back={() => setActiveStep((prev) => prev - 1)}
-            />
-          </form>
-        }
-      />
+            back={() => setActiveStep((prev) => prev - 1)}
+          />
+        </form>
+      ) : (
+        <MultistepBooking
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+          tripDetails={
+            <form className={styles.form} onSubmit={handleSubmitTripInfo}>
+              <TripDetailsFormFields
+                {...{
+                  fromDestination,
+                  setFromDestination,
+                  toDestination,
+                  setToDestination,
+                  isRoundtrip,
+                  setIsRoundtrip,
+                  departureDate,
+                  setDepartureDate,
+                  arrivalDate,
+                  setArrivalDate,
+                  formData,
+                  handleChange,
+                  selectedRoute,
+                }}
+                fromDestinationOptions={
+                  routes ? getFromDestinations(routes) : null
+                }
+                toDestinationOptions={
+                  routes
+                    ? routes
+                        ?.filter(
+                          (route) => route.fromDestination === fromDestination
+                        )
+                        .map((route) => route.toDestination)
+                    : null
+                }
+              />
+            </form>
+          }
+          paymentDetails={
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <PaymentFormFields
+                {...{
+                  creditcardData,
+                  handleCreditcardInputChange,
+                  expiryRef,
+                  selectedRoute,
+                  formData,
+                  isRoundtrip,
+                }}
+                back={() => setActiveStep((prev) => prev - 1)}
+              />
+            </form>
+          }
+        />
+      )}
     </div>
   );
 };

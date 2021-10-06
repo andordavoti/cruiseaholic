@@ -13,6 +13,7 @@ import DestinationSelector from "./DestinationSelector";
 import { FormData } from "../pages/BookingPage";
 import { getTotalPrice } from "../utils/getTotalPrice";
 import { Route } from "../../types";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface Props {
   fromDestination: string;
@@ -50,6 +51,7 @@ const TripDetailsFormFields: FC<Props> = ({
   selectedRoute,
 }) => {
   const theme = useTheme();
+  const isMobile = useIsMobile();
   return (
     <>
       <DestinationSelector
@@ -228,46 +230,48 @@ const TripDetailsFormFields: FC<Props> = ({
         inputProps={{ min: "0" }}
       />
 
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "1rem",
-        }}
-      >
-        <Typography color="textPrimary" variant="h6" align="center">
-          Total price:
-          <Typography
-            color="textPrimary"
-            variant="h6"
-            style={{ fontWeight: "normal", marginLeft: "0.5rem" }}
-          >
-            {getTotalPrice(
-              selectedRoute,
-              formData.numberOfAdults,
-              formData.numberOfChildren,
-              formData.numberOfVehicles,
-              isRoundtrip
-            )}
-          </Typography>
-        </Typography>
-
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
+      {!isMobile && (
+        <div
           style={{
-            color: theme.palette.secondary.main,
-            borderRadius: 25,
-            marginTop: "1rem",
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "1rem",
           }}
         >
-          Continue to payment
-        </Button>
-      </div>
+          <Typography color="textPrimary" variant="h6" align="center">
+            Total price:
+            <Typography
+              color="textPrimary"
+              variant="h6"
+              style={{ fontWeight: "normal", marginLeft: "0.5rem" }}
+            >
+              {getTotalPrice(
+                selectedRoute,
+                formData.numberOfAdults,
+                formData.numberOfChildren,
+                formData.numberOfVehicles,
+                isRoundtrip
+              )}
+            </Typography>
+          </Typography>
+
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{
+              color: theme.palette.secondary.main,
+              borderRadius: 25,
+              marginTop: "1rem",
+            }}
+          >
+            Continue to payment
+          </Button>
+        </div>
+      )}
     </>
   );
 };

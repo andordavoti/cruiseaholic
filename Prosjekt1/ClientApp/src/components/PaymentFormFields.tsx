@@ -10,6 +10,7 @@ import Cards from "react-credit-cards";
 import { CreditcardFormData, FormData } from "../pages/BookingPage";
 import { getTotalPrice } from "../utils/getTotalPrice";
 import { Route } from "../../types";
+import { useIsMobile } from "../hooks/useIsMobile";
 
 interface Props {
   creditcardData: CreditcardFormData;
@@ -31,14 +32,15 @@ const PaymentFormFields: FC<Props> = ({
   back,
 }) => {
   const theme = useTheme();
+  const isMobile = useIsMobile();
   return (
     <>
       <div
         style={{
           display: "flex",
-          width: "100vw",
           justifyContent: "center",
           margin: "1rem",
+          width: "100%",
         }}
       >
         <Cards
@@ -126,20 +128,21 @@ const PaymentFormFields: FC<Props> = ({
           </Typography>
         </Typography>
 
-        <Box display="flex">
-          <Button
-            onClick={back}
-            variant="contained"
-            color="primary"
-            style={{
-              color: theme.palette.secondary.main,
-              borderRadius: 25,
-              marginTop: "1rem",
-              marginRight: "0.5rem",
-            }}
-          >
-            Back
-          </Button>
+        <Box display="flex" marginBottom="2rem" marginTop="1rem">
+          {!isMobile && (
+            <Button
+              onClick={back}
+              variant="contained"
+              color="primary"
+              style={{
+                color: theme.palette.secondary.main,
+                borderRadius: 25,
+                marginRight: "0.5rem",
+              }}
+            >
+              Back
+            </Button>
+          )}
 
           <Button
             type="submit"
@@ -148,7 +151,6 @@ const PaymentFormFields: FC<Props> = ({
             style={{
               color: theme.palette.secondary.main,
               borderRadius: 25,
-              marginTop: "1rem",
               marginLeft: "0.5rem",
             }}
           >
