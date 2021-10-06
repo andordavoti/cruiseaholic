@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Cruisaholic.Models;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace Cruisaholic.DAL
 {
@@ -13,22 +11,19 @@ namespace Cruisaholic.DAL
 
         private readonly OrderContext _orderDB;
 
-        private ILogger<OrderRepository> _orderLog;
 
-        public OrderRepository(OrderContext orderDB, ILogger<OrderRepository> orderLog)
+        public OrderRepository(OrderContext orderDB)
         {
             _orderDB = orderDB;
-            _orderLog = orderLog;
 
         }
 
         [HttpPost]
         public async Task<string> NewOrder([FromBody] CustomerOrder newOrder)
         {
-            _orderLog.LogInformation("NewOrder: ");
-            _orderLog.LogInformation(JsonConvert.SerializeObject(newOrder));
-
             Customer existingCustomer;
+
+            var route = await _orderDB.Route.SingleAsync(route => route.ToDestination.Equals(newOrder.ToDestination) && route.FromDestination.Equals(newOrder.FromDestination));
 
             try
             {
@@ -39,59 +34,68 @@ namespace Cruisaholic.DAL
                 existingCustomer = null;
             }
 
-            _orderLog.LogInformation("ExistingCustomer: ");
-            _orderLog.LogInformation(JsonConvert.SerializeObject(existingCustomer));
-
-            var customer = new Customer();
-
             if (existingCustomer != null)
             {
-                customer = existingCustomer;
-                customer.FirstName = newOrder.FirstName;
-                customer.LastName = newOrder.LastName;
-                customer.PhoneNumber = newOrder.PhoneNumber;
+                existingCustomer.FirstName = newOrder.FirstName;
+                existingCustomer.LastName = newOrder.LastName;
+                existingCustomer.PhoneNumber = newOrder.PhoneNumber;
+
+                var order = new Order()
+                {
+                    NumberOfAdults = newOrder.NumberOfAdults,
+                    NumberOfChildren = newOrder.NumberOfChildren,
+                    NumberOfVehicles = newOrder.NumberOfVehicles,
+
+                    IsRoundtrip = newOrder.IsRoundtrip,
+                    DepartureDate = newOrder.DepartureDate,
+                    ArrivalDate = newOrder.ArrivalDate,
+
+                    CardNumber = newOrder.CardNumber,
+                    CardholderName = newOrder.CardholderName,
+                    CVC = newOrder.CVC,
+                    Expiry = newOrder.Expiry,
+
+                    Customer = existingCustomer,
+                    Route = route,
+                };
+
+                existingCustomer.Orders.Add(order);
+                await _orderDB.SaveChangesAsync();
+                return existingCustomer.Email;
             }
             else
             {
-                customer.FirstName = newOrder.FirstName;
-                customer.LastName = newOrder.LastName;
-                customer.Email = newOrder.Email;
-                customer.PhoneNumber = newOrder.PhoneNumber;
+                var customer = new Customer()
+                {
+                    FirstName = newOrder.FirstName,
+                    LastName = newOrder.LastName,
+                    Email = newOrder.Email,
+                    PhoneNumber = newOrder.PhoneNumber,
+                };
+
+                var order = new Order()
+                {
+                    NumberOfAdults = newOrder.NumberOfAdults,
+                    NumberOfChildren = newOrder.NumberOfChildren,
+                    NumberOfVehicles = newOrder.NumberOfVehicles,
+
+                    IsRoundtrip = newOrder.IsRoundtrip,
+                    DepartureDate = newOrder.DepartureDate,
+                    ArrivalDate = newOrder.ArrivalDate,
+
+                    CardNumber = newOrder.CardNumber,
+                    CardholderName = newOrder.CardholderName,
+                    CVC = newOrder.CVC,
+                    Expiry = newOrder.Expiry,
+
+                    Customer = customer,
+                    Route = route,
+                };
+
+                _orderDB.Add(order);
+                await _orderDB.SaveChangesAsync();
+                return order.Customer.Email;
             }
-
-            _orderLog.LogInformation("Customer: ");
-            _orderLog.LogInformation(JsonConvert.SerializeObject(customer));
-
-            var route = await _orderDB.Route.SingleAsync(route => route.ToDestination.Equals(newOrder.ToDestination) && route.FromDestination.Equals(newOrder.FromDestination));
-
-            _orderLog.LogInformation("Route: ");
-            _orderLog.LogInformation(JsonConvert.SerializeObject(route));
-
-            var order = new Order()
-            {
-                NumberOfAdults = newOrder.NumberOfAdults,
-                NumberOfChildren = newOrder.NumberOfChildren,
-                NumberOfVehicles = newOrder.NumberOfVehicles,
-
-                IsRoundtrip = newOrder.IsRoundtrip,
-                DepartureDate = newOrder.DepartureDate,
-                ArrivalDate = newOrder.ArrivalDate,
-
-                CardNumber = newOrder.CardNumber,
-                CardholderName = newOrder.CardholderName,
-                CVC = newOrder.CVC,
-                Expiry = newOrder.Expiry,
-
-                Customer = customer,
-                Route = route,
-            };
-
-            _orderLog.LogInformation("Order: ");
-            _orderLog.LogInformation(JsonConvert.SerializeObject(order));
-
-            _orderDB.Add(order);
-            await _orderDB.SaveChangesAsync();
-            return order.Customer.Email;
         }
 
         public async Task<Customer> GetCustomerInfo(string email)

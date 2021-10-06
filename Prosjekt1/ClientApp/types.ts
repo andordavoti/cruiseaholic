@@ -1,4 +1,11 @@
-export interface CustomerOrder {
+export interface Creditcard {
+  cardNumber: number;
+  cardholderName: string;
+  cvc: number;
+  expiry: string;
+}
+
+export interface TripInfo {
   // TRIP
   numberOfAdults: string;
   numberOfChildren: string;
@@ -6,12 +13,6 @@ export interface CustomerOrder {
   isRoundtrip: boolean;
   departureDate: undefined | string;
   arrivalDate: undefined | null | string;
-
-  // CREDITCARD
-  cardNumber: number;
-  cardholderName: string;
-  cvc: number;
-  expiry: string;
 
   // CUSTOMER
   firstName: string;
@@ -23,6 +24,8 @@ export interface CustomerOrder {
   fromDestination: string;
   toDestination: string;
 }
+
+export interface CustomerOrder extends Creditcard, TripInfo {}
 
 export interface CustomerInfo {
   id: number;

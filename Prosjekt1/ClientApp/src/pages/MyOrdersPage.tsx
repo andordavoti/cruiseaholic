@@ -41,7 +41,7 @@ const MyOrdersPage: FC<Props> = ({
   const [order, setOrder] = useState<null | CustomerInfo>(null);
   const [orderLoading, setOrderLoading] = useState(true);
 
-  const [customerEmail, setCustomerEmail] = useState(email); // TODO: is this undeifned if not given?
+  const [customerEmail, setCustomerEmail] = useState(email);
   const [emailInput, setEmailInput] = useState("");
 
   const styles = useStyles();
@@ -129,11 +129,11 @@ const MyOrdersPage: FC<Props> = ({
               route,
               isRoundtrip,
             }) => (
-              <>
+              <div key={id}>
                 <Typography
                   color="textPrimary"
                   variant="h5"
-                  style={{ marginTop: "1rem", marginBottom: "1rem" }}
+                  style={{ marginTop: "2rem", marginBottom: "1rem" }}
                 >
                   Order {id}:
                 </Typography>
@@ -168,7 +168,7 @@ const MyOrdersPage: FC<Props> = ({
                   )}
                   isLast
                 />
-              </>
+              </div>
             )
           )}
 
@@ -182,7 +182,8 @@ const MyOrdersPage: FC<Props> = ({
             style={{
               color: theme.palette.secondary.main,
               borderRadius: 25,
-              marginTop: "1rem",
+              marginTop: "2rem",
+              marginBottom: "2rem",
             }}
           >
             Orders for a different email

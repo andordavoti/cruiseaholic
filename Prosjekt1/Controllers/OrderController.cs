@@ -30,10 +30,10 @@ namespace Cruisaholic.Controllers
                     var customerEmail = await _orderDB.NewOrder(newOrder);
                     return Ok(customerEmail);
                 }
-                catch(Exception err)
+                catch (Exception err)
                 {
                     _orderLog.LogInformation("Something went wrong saving the order! Err: " + err);
-                    return BadRequest("Something went wrong saving the order!");
+                    return BadRequest("Something went wrong saving the order!" + err);
                 }
             }
 
@@ -47,7 +47,7 @@ namespace Cruisaholic.Controllers
 
             if (customerInfo == null)
             {
-                _orderLog.LogInformation("Customer with email: " + email+ ", was not found");
+                _orderLog.LogInformation("Customer with email: " + email + ", was not found");
                 return NotFound("Customer with email: " + email + ", was not found");
             }
 

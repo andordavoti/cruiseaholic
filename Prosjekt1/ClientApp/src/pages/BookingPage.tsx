@@ -1,23 +1,16 @@
-import { KeyboardDatePicker } from "@material-ui/pickers";
-import {
-  TextField,
-  Typography,
-  Button,
-  useTheme,
-  Checkbox,
-  FormControlLabel,
-} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import dayjs, { Dayjs } from "dayjs";
 import Payment from "payment";
 import { FC, useEffect, useRef, useState } from "react";
-import DestinationSelector from "../components/DestinationSelector";
 import { toast } from "../App";
-import Cards, { Focused } from "react-credit-cards";
-import { valudateForm } from "../utils/validateForm";
+import { Focused } from "react-credit-cards";
+import { validatePayment, validateTripInfo } from "../utils/validateForm";
 import { Redirect } from "react-router-dom";
-import { CustomerOrder, Route } from "../../types";
+import { CustomerOrder, Route, TripInfo } from "../../types";
 import { getFromDestinations } from "../utils/getFromDestinations";
-import { getTotalPrice } from "../utils/getTotalPrice";
+import MultistepBooking from "../components/MultistepBooking";
+import TripDetailsFormFields from "../components/TripDetailsFormFields";
+import PaymentFormFields from "../components/PaymentFormFields";
 
 const initialFormData = {
   firstName: "",
@@ -29,6 +22,8 @@ const initialFormData = {
   numberOfVehicles: "0",
 };
 
+export type FormData = typeof initialFormData;
+export type CreditcardFormData = typeof initialCreditcardData;
 interface CreditcardDataType {
   cvc: "";
   expiry: "";
@@ -46,7 +41,7 @@ const initialCreditcardData: CreditcardDataType = {
 };
 
 const BookingPage: FC = () => {
-  const theme = useTheme();
+  const [activeStep, setActiveStep] = useState(0);
 
   const expiryRef = useRef<null | HTMLInputElement>(null);
 
@@ -55,7 +50,7 @@ const BookingPage: FC = () => {
     undefined
   );
 
-  const [orderReference, setOrderReference] = useState<null | number>(null);
+  const [referenceEmail, setReferenceEmail] = useState<null | string>(null);
 
   const [formData, setFormData] = useState(initialFormData);
   const [creditcardData, setCreditcardData] = useState(initialCreditcardData);
@@ -123,6 +118,23 @@ const BookingPage: FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmitTripInfo = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data: TripInfo = {
+      ...formData,
+      isRoundtrip,
+      fromDestination,
+      toDestination,
+      departureDate: departureDate?.format("DD/MM/YYYY"),
+      arrivalDate: isRoundtrip ? arrivalDate?.format("DD/MM/YYYY") : null,
+    };
+
+    if (validateTripInfo(data)) {
+      setActiveStep((prev) => prev + 1);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -139,9 +151,7 @@ const BookingPage: FC = () => {
       expiry: creditcardData.expiry,
     };
 
-    console.log("data: ", data);
-
-    if (valudateForm(data)) {
+    if (validateTripInfo(data) && validatePayment(data)) {
       try {
         const res = await fetch("order/newOrder", {
           method: "post",
@@ -152,12 +162,13 @@ const BookingPage: FC = () => {
         });
 
         if (res.status === 200) {
-          const referenceNumber = await res.json();
+          const referenceEmail = await res.text();
+
           setFormData(initialFormData);
           setCreditcardData(initialCreditcardData);
           toast.success("Booking was successfully registered");
 
-          setOrderReference(referenceNumber);
+          setReferenceEmail(referenceEmail);
         } else {
           toast.error("Something went wrong with booking your trip...");
         }
@@ -168,8 +179,8 @@ const BookingPage: FC = () => {
     }
   };
 
-  if (orderReference) {
-    return <Redirect to={`/my-orders/${orderReference}`} />;
+  if (referenceEmail) {
+    return <Redirect to={`/my-orders/${referenceEmail}`} />;
   }
 
   return (
@@ -186,307 +197,80 @@ const BookingPage: FC = () => {
         Booking
       </Typography>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          width: "100vw",
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
-          maxWidth: 600,
-          margin: "2rem",
-        }}
-      >
-        <DestinationSelector
-          label="From destination"
-          value={fromDestination}
-          setValue={setFromDestination}
-          options={routes ? getFromDestinations(routes) : null}
-        />
-
-        <DestinationSelector
-          label="To destination"
-          value={toDestination}
-          setValue={setToDestination}
-          options={
-            routes
-              ? routes
-                  ?.filter((route) => route.fromDestination === fromDestination)
-                  .map((route) => route.toDestination)
-              : null
-          }
-        />
-
-        <div
-          style={{
-            display: "flex",
-            width: "100vw",
-            justifyContent: "center",
-          }}
-        >
-          <FormControlLabel
-            control={
-              <Checkbox
-                defaultChecked
-                color="secondary"
-                value={isRoundtrip}
-                onChange={(_, checked) => setIsRoundtrip(checked)}
-              />
-            }
-            label="Roundtrip"
-            style={{ margin: "1rem" }}
-          />
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            width: "100vw",
-            justifyContent: "center",
-          }}
-        >
-          <KeyboardDatePicker
-            autoOk
-            color="secondary"
-            variant="inline"
-            inputVariant="outlined"
-            label="Departure date"
-            format="DD/MM/YYYY"
-            value={departureDate}
-            minDate={dayjs()}
-            InputAdornmentProps={{ position: "start" }}
-            onChange={setDepartureDate}
-            style={{ margin: "1rem", minWidth: 240 }}
-          />
-
-          {isRoundtrip && (
-            <KeyboardDatePicker
-              autoOk
-              color="secondary"
-              variant="inline"
-              inputVariant="outlined"
-              label="Arrival date"
-              format="DD/MM/YYYY"
-              value={arrivalDate}
-              minDate={dayjs()}
-              InputAdornmentProps={{ position: "start" }}
-              onChange={setArrivalDate}
-              style={{ margin: "1rem", minWidth: 240 }}
-            />
-          )}
-        </div>
-
-        <TextField
-          required
-          name="firstName"
-          type="text"
-          label="First name"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          type="text"
-          name="lastName"
-          label="Last name"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          name="email"
-          type="email"
-          label="Email"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          name="phoneNumber"
-          type="text"
-          label="Phone number"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.phoneNumber}
-          onChange={handleChange}
-        />
-        <TextField
-          required
-          name="numberOfAdults"
-          type="number"
-          label={`Number of adults${
-            !!selectedRoute &&
-            ` (${
-              isRoundtrip
-                ? selectedRoute.priceAdults * 2
-                : selectedRoute.priceAdults
-            } NOK)`
-          }`}
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.numberOfAdults}
-          onChange={handleChange}
-          inputProps={{ min: "0" }}
-        />
-        <TextField
-          required
-          name="numberOfChildren"
-          type="number"
-          label={`Number of children${
-            !!selectedRoute &&
-            ` (${
-              isRoundtrip
-                ? selectedRoute.priceChildren * 2
-                : selectedRoute.priceChildren
-            } NOK)`
-          }`}
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.numberOfChildren}
-          onChange={handleChange}
-          inputProps={{ min: "0" }}
-        />
-        <TextField
-          required
-          name="numberOfVehicles"
-          type="number"
-          label={`Number of vehicles${
-            !!selectedRoute &&
-            ` (${
-              isRoundtrip
-                ? selectedRoute.priceVehicle * 2
-                : selectedRoute.priceVehicle
-            } NOK)`
-          }`}
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={formData.numberOfVehicles}
-          onChange={handleChange}
-          inputProps={{ min: "0" }}
-        />
-
-        <div
-          style={{
-            display: "flex",
-            width: "100vw",
-            justifyContent: "center",
-            margin: "1rem",
-          }}
-        >
-          <Cards
-            cvc={creditcardData.cvc}
-            expiry={creditcardData.expiry}
-            focused={creditcardData.focus}
-            name={creditcardData.name}
-            number={creditcardData.number}
-          />
-        </div>
-
-        <TextField
-          required
-          name="number"
-          type="number"
-          label="Card Number"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={creditcardData.number}
-          onChange={handleCreditcardInputChange}
-        />
-
-        <TextField
-          required
-          name="name"
-          type="text"
-          label="Cardholder Name"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={creditcardData.name}
-          onChange={handleCreditcardInputChange}
-        />
-
-        <TextField
-          required
-          name="cvc"
-          type="number"
-          label="CVC"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={creditcardData.cvc}
-          onChange={handleCreditcardInputChange}
-        />
-
-        <TextField
-          ref={expiryRef}
-          required
-          name="expiry"
-          type="text"
-          label="Expiry (MM/YY)"
-          variant="outlined"
-          color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
-          value={creditcardData.expiry.replaceAll(" ", "")}
-          onChange={handleCreditcardInputChange}
-        />
-
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "1rem",
-          }}
-        >
-          <Typography color="textPrimary" variant="h6" align="center">
-            Total price:
-            <Typography
-              color="textPrimary"
-              variant="h6"
-              style={{ fontWeight: "normal", marginLeft: "0.5rem" }}
-            >
-              {getTotalPrice(
-                selectedRoute,
-                formData.numberOfAdults,
-                formData.numberOfChildren,
-                formData.numberOfVehicles,
-                isRoundtrip
-              )}
-            </Typography>
-          </Typography>
-
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
+      <MultistepBooking
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
+        tripDetails={
+          <form
             style={{
-              color: theme.palette.secondary.main,
-              borderRadius: 25,
-              marginTop: "1rem",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: "auto",
+              marginRight: "auto",
+              maxWidth: 600,
+            }}
+            onSubmit={handleSubmitTripInfo}
+          >
+            <TripDetailsFormFields
+              {...{
+                fromDestination,
+                setFromDestination,
+                toDestination,
+                setToDestination,
+                isRoundtrip,
+                setIsRoundtrip,
+                departureDate,
+                setDepartureDate,
+                arrivalDate,
+                setArrivalDate,
+                formData,
+                handleChange,
+                selectedRoute,
+              }}
+              fromDestinationOptions={
+                routes ? getFromDestinations(routes) : null
+              }
+              toDestinationOptions={
+                routes
+                  ? routes
+                      ?.filter(
+                        (route) => route.fromDestination === fromDestination
+                      )
+                      .map((route) => route.toDestination)
+                  : null
+              }
+            />
+          </form>
+        }
+        paymentDetails={
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: "auto",
+              marginRight: "auto",
+              maxWidth: 600,
             }}
           >
-            Submit
-          </Button>
-        </div>
-      </form>
+            <PaymentFormFields
+              {...{
+                creditcardData,
+                handleCreditcardInputChange,
+                expiryRef,
+                selectedRoute,
+                formData,
+                isRoundtrip,
+              }}
+              back={() => setActiveStep((prev) => prev - 1)}
+            />
+          </form>
+        }
+      />
     </div>
   );
 };

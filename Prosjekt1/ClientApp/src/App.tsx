@@ -14,7 +14,7 @@ import "react-credit-cards/es/styles-compiled.css";
 import MyOrdersPage from "./pages/MyOrdersPage";
 import BookingPage from "./pages/BookingPage";
 
-export const toast = new Notyf();
+export const toast = new Notyf({ duration: 3000 });
 
 const theme = createTheme(themeOptions);
 

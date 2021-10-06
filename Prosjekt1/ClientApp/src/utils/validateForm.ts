@@ -1,24 +1,18 @@
 import dayjs from "dayjs";
 import { toast } from "../App";
-import { CustomerOrder } from "../../types";
+import { Creditcard, TripInfo } from "../../types";
 
-export const valudateForm = (formData: CustomerOrder): boolean => {
-  const {
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    isRoundtrip,
-    fromDestination,
-    toDestination,
-    departureDate,
-    arrivalDate,
-    cardNumber,
-    cardholderName,
-    cvc,
-    expiry,
-  } = formData;
-
+export const validateTripInfo = ({
+  firstName,
+  lastName,
+  email,
+  phoneNumber,
+  isRoundtrip,
+  fromDestination,
+  toDestination,
+  departureDate,
+  arrivalDate,
+}: TripInfo): boolean => {
   if (fromDestination === toDestination) {
     toast.error("From and to destinations cannot be the same");
     return false;
@@ -93,6 +87,15 @@ export const valudateForm = (formData: CustomerOrder): boolean => {
     return false;
   }
 
+  return true;
+};
+
+export const validatePayment = ({
+  cardNumber,
+  cardholderName,
+  cvc,
+  expiry,
+}: Creditcard): boolean => {
   if (!/^[0-9]{16}$/.test(cardNumber.toString())) {
     toast.error("Creditcard number is not valid!");
     return false;
