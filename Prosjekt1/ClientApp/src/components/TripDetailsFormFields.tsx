@@ -177,12 +177,13 @@ const TripDetailsFormFields: FC<Props> = ({
         name="numberOfAdults"
         type="number"
         label={`Number of adults${
-          !!selectedRoute &&
-          ` (${
-            isRoundtrip
-              ? selectedRoute.priceAdults * 2
-              : selectedRoute.priceAdults
-          } NOK)`
+          !!selectedRoute
+            ? ` (${
+                isRoundtrip
+                  ? selectedRoute.priceAdults * 2
+                  : selectedRoute.priceAdults
+              } NOK)`
+            : ""
         }`}
         variant="outlined"
         color="secondary"
@@ -196,12 +197,13 @@ const TripDetailsFormFields: FC<Props> = ({
         name="numberOfChildren"
         type="number"
         label={`Number of children${
-          !!selectedRoute &&
-          ` (${
-            isRoundtrip
-              ? selectedRoute.priceChildren * 2
-              : selectedRoute.priceChildren
-          } NOK)`
+          !!selectedRoute
+            ? ` (${
+                isRoundtrip
+                  ? selectedRoute.priceChildren * 2
+                  : selectedRoute.priceChildren
+              } NOK)`
+            : ""
         }`}
         variant="outlined"
         color="secondary"
@@ -215,12 +217,13 @@ const TripDetailsFormFields: FC<Props> = ({
         name="numberOfVehicles"
         type="number"
         label={`Number of vehicles${
-          !!selectedRoute &&
-          ` (${
-            isRoundtrip
-              ? selectedRoute.priceVehicle * 2
-              : selectedRoute.priceVehicle
-          } NOK)`
+          !!selectedRoute
+            ? ` (${
+                isRoundtrip
+                  ? selectedRoute.priceVehicle * 2
+                  : selectedRoute.priceVehicle
+              } NOK)`
+            : ""
         }`}
         variant="outlined"
         color="secondary"

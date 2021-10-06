@@ -9,3 +9,8 @@
 2021-10-06T11:58:50.7404190+02:00 0HMC8KG8IBJ64:00000006 [INF] Customer with email: test@gmail.com, was not found (952f21dc)
 2021-10-06T11:58:51.1258150+02:00 0HMC8KG8IBJ66:00000007 [INF] Customer with email: test@gmail.com, was not found (952f21dc)
 2021-10-06T11:58:51.7484710+02:00 0HMC8KG8IBJ65:0000000F [INF] Customer with email: test@gmail.com, was not found (952f21dc)
+2021-10-06T13:50:41.5197050+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2021-10-06T13:50:41.5257340+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2021-10-06T13:50:41.5285370+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-10-06T13:50:41.5306350+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-10-06T13:50:41.5330080+02:00  [INF] Content root path: "/Users/andordavoti/git/university/ITPE3200/Prosjekt1/Prosjekt1" (b5d60022)

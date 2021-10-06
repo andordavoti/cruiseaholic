@@ -15,8 +15,7 @@ import {
   useTheme,
   makeStyles,
 } from "@material-ui/core";
-import { HiMenuAlt3 } from "react-icons/hi";
-import { MdMailOutline, MdClose } from "react-icons/md";
+import { MailOutline, Close, Menu } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import logoImg from "../assets/logo.png";
@@ -82,7 +81,7 @@ const Navbar: React.FC = () => {
           {isMobile ? (
             <Box>
               <IconButton color="secondary" onClick={() => setDrawerOpen(true)}>
-                <HiMenuAlt3 size="2rem" />
+                <Menu />
               </IconButton>
 
               <SwipeableDrawer
@@ -107,10 +106,7 @@ const Navbar: React.FC = () => {
                       style={{ marginTop: 15, marginRight: 15 }}
                       color="secondary"
                     >
-                      <MdClose
-                        color={theme.palette.secondary.main}
-                        size="2rem"
-                      />
+                      <Close />
                     </IconButton>
                   </div>
 
@@ -118,14 +114,11 @@ const Navbar: React.FC = () => {
                     <Link
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="mailto:s354356@oslomet.no"
+                      href="mailto:contact@cruiseaholic.com"
                     >
                       <ListItem button>
                         <ListItemIcon>
-                          <MdMailOutline
-                            color={theme.palette.secondary.main}
-                            size="2rem"
-                          />
+                          <MailOutline />
                         </ListItemIcon>
                         <ListItemText
                           primary="Email"
@@ -257,10 +250,10 @@ const Navbar: React.FC = () => {
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
-                href="mailto:s354356@oslomet.no"
+                href="mailto:contact@cruiseaholic.com"
               >
                 <IconButton color="secondary">
-                  <MdMailOutline size="2rem" />
+                  <MailOutline />
                 </IconButton>
               </Link>
             </Box>

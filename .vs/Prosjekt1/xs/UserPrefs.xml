@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/DAL/OrderRepository.cs">
     <Files>
-      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="5" Column="26" />
+      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="9" Column="46" />
       <File FileName="Prosjekt1/DAL/IOrderRepository.cs" />
       <File FileName="Prosjekt1/Controllers/OrderController.cs" />
       <File FileName="Prosjekt1/Startup.cs" />
