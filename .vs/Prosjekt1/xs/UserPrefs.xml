@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/DAL/OrderRepository.cs">
     <Files>
-      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="8" Column="2" />
+      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="29" Column="14" />
       <File FileName="Prosjekt1/DAL/IOrderRepository.cs" />
       <File FileName="Prosjekt1/Controllers/OrderController.cs" />
       <File FileName="Prosjekt1/Startup.cs" />
@@ -17,16 +17,14 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Prosjekt1" expanded="True">
-            <Node name="Prosjekt1" expanded="True">
+            <Node name="Prosjekt1" expanded="True" selected="True">
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
                   <Node name="components" expanded="True" />
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True">
-                <Node name="OrderRepository.cs" selected="True" />
-              </Node>
+              <Node name="DAL" expanded="True" />
               <Node name="Models" expanded="True" />
             </Node>
           </Node>

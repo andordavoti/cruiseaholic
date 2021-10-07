@@ -1,5 +1,0 @@
-2021-10-07T10:45:09.3999270+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
-2021-10-07T10:45:09.4148680+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
-2021-10-07T10:45:09.4196520+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
-2021-10-07T10:45:09.4237850+02:00  [INF] Hosting environment: "Development" (c3307c92)
-2021-10-07T10:45:09.4272910+02:00  [INF] Content root path: "/Users/andordavoti/git/university/ITPE3200/Prosjekt1/Prosjekt1" (b5d60022)
