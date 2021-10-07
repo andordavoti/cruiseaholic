@@ -17,14 +17,12 @@ export const validateTripInfo = ({
   numberOfVehicles,
 }: TripInfo): boolean => {
   if (Number(numberOfChildren) === 0 && Number(numberOfAdults) === 0) {
-    toast.error("You must either have a ticket for child or an adult");
+    toast.error("You must either have a ticket for a child or an adult");
     return false;
   }
 
   if (Number(numberOfAdults) === 0 && Number(numberOfVehicles) !== 0) {
-    toast.error(
-      "You must have a ticket for an adult to bring a vehicles on board"
-    );
+    toast.error("You must have an adult ticket to bring vehicles on board");
     return false;
   }
 

@@ -10,7 +10,7 @@
       <File FileName="Prosjekt1/Models/Order.cs" />
       <File FileName="Prosjekt1/Models/Route.cs" />
       <File FileName="Prosjekt1/DAL/DBInit.cs" />
-      <File FileName="Prosjekt1/Models/CustomerOrder.cs" Line="15" Column="17" />
+      <File FileName="Prosjekt1/Models/CustomerOrder.cs" Line="2" Column="1" />
       <File FileName="Prosjekt1/DAL/OrderContext.cs" />
     </Files>
     <Pads>
