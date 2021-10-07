@@ -7,10 +7,10 @@
       <File FileName="Prosjekt1/Controllers/OrderController.cs" />
       <File FileName="Prosjekt1/Startup.cs" />
       <File FileName="Prosjekt1/Models/Customer.cs" />
-      <File FileName="Prosjekt1/Models/Order.cs" Line="27" Column="33" />
+      <File FileName="Prosjekt1/Models/Order.cs" />
       <File FileName="Prosjekt1/Models/Route.cs" />
       <File FileName="Prosjekt1/DAL/DBInit.cs" />
-      <File FileName="Prosjekt1/Models/CustomerOrder.cs" Line="21" Column="27" />
+      <File FileName="Prosjekt1/Models/CustomerOrder.cs" Line="15" Column="17" />
       <File FileName="Prosjekt1/DAL/OrderContext.cs" />
     </Files>
     <Pads>

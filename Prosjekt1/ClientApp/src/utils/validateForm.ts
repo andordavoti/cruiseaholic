@@ -28,6 +28,16 @@ export const validateTripInfo = ({
     return false;
   }
 
+  if (!/^[a-zA-ZæøåÆØÅ. \-,]{2,40}$/.test(fromDestination)) {
+    toast.error("From destination is not valid!");
+    return false;
+  }
+
+  if (!/^[a-zA-ZæøåÆØÅ. \-,]{2,40}$/.test(toDestination)) {
+    toast.error("To destination is not valid!");
+    return false;
+  }
+
   if (fromDestination === toDestination) {
     toast.error("From and to destinations cannot be the same");
     return false;
@@ -69,16 +79,6 @@ export const validateTripInfo = ({
 
   if (!/^(?:\+[0-9]{10}|[0-9]{8})$/.test(phoneNumber)) {
     toast.error("Phone number is not valid!");
-    return false;
-  }
-
-  if (!/^[a-zA-ZæøåÆØÅ. \-,]{2,40}$/.test(fromDestination)) {
-    toast.error("From destination is not valid!");
-    return false;
-  }
-
-  if (!/^[a-zA-ZæøåÆØÅ. \-,]{2,40}$/.test(toDestination)) {
-    toast.error("To destination is not valid!");
     return false;
   }
 

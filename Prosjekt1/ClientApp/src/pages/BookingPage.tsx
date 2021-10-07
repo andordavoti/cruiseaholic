@@ -85,7 +85,9 @@ const BookingPage: FC = () => {
   const [toDestination, setToDestination] = useState("");
 
   const [departureDate, setDepartureDate] = useState<null | Dayjs>(dayjs());
-  const [returnDate, setReturnDate] = useState<null | Dayjs>(dayjs());
+  const [returnDate, setReturnDate] = useState<null | Dayjs>(
+    dayjs().add(1, "day")
+  );
 
   useEffect(() => {
     if (!routes || !fromDestination?.length || !toDestination?.length) {
