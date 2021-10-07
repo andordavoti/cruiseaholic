@@ -6,12 +6,20 @@ import { Link } from "react-router-dom";
 interface Props {
   title: string;
   subText: string;
-  btnText: string;
+  btnText?: string;
   img: string;
+  hideBtn?: boolean;
   reverse?: boolean;
 }
 
-const Hero: FC<Props> = ({ title, subText, btnText, img, reverse = false }) => {
+const Hero: FC<Props> = ({
+  title,
+  subText,
+  btnText,
+  img,
+  reverse = false,
+  hideBtn = false,
+}) => {
   const theme = useTheme();
   const isMobile = useIsMobile();
   return (
@@ -54,23 +62,27 @@ const Hero: FC<Props> = ({ title, subText, btnText, img, reverse = false }) => {
           {subText}
         </Typography>
 
-        <Box m="2rem" />
+        {!hideBtn && (
+          <>
+            <Box m="2rem" />
 
-        <Link to="/booking">
-          <Button
-            variant="contained"
-            color="primary"
-            style={{
-              color: theme.palette.secondary.main,
-              borderRadius: 25,
-              display: isMobile ? "block" : undefined,
-              marginLeft: isMobile ? "auto" : undefined,
-              marginRight: isMobile ? "auto" : undefined,
-            }}
-          >
-            {btnText}
-          </Button>
-        </Link>
+            <Link to="/booking">
+              <Button
+                variant="contained"
+                color="primary"
+                style={{
+                  color: theme.palette.secondary.main,
+                  borderRadius: 25,
+                  display: isMobile ? "block" : undefined,
+                  marginLeft: isMobile ? "auto" : undefined,
+                  marginRight: isMobile ? "auto" : undefined,
+                }}
+              >
+                {btnText}
+              </Button>
+            </Link>
+          </>
+        )}
       </div>
       <img
         style={{

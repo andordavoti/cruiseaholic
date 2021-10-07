@@ -22,8 +22,8 @@ const HomePage: FC = () => {
       <Hero
         title="Get onboard!"
         subText="Daily departures from all of our destinations at 10 am. We hope to see you onboard soon!"
-        btnText="Book now"
         img={hero2Img}
+        hideBtn
         reverse
       />
     </Box>
