@@ -12,7 +12,7 @@ export interface TripInfo {
   numberOfVehicles: string;
   isRoundtrip: boolean;
   departureDate: undefined | string;
-  arrivalDate: undefined | null | string;
+  returnDate: undefined | null | string;
 
   // CUSTOMER
   firstName: string;
@@ -47,7 +47,7 @@ export interface Order {
   numberOfVehicles: string;
   isRoundtrip: boolean;
   departureDate: undefined | string;
-  arrivalDate: undefined | null | string;
+  returnDate: undefined | null | string;
 
   // CREDITCARD
   cardNumber: number;

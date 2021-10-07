@@ -26,8 +26,8 @@ interface Props {
   setIsRoundtrip: Dispatch<SetStateAction<boolean>>;
   departureDate: null | Dayjs;
   setDepartureDate: Dispatch<SetStateAction<null | Dayjs>>;
-  arrivalDate: null | Dayjs;
-  setArrivalDate: Dispatch<SetStateAction<null | Dayjs>>;
+  returnDate: null | Dayjs;
+  setReturnDate: Dispatch<SetStateAction<null | Dayjs>>;
   formData: FormData;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectedRoute: Route | undefined;
@@ -44,8 +44,8 @@ const TripDetailsFormFields: FC<Props> = ({
   setIsRoundtrip,
   departureDate,
   setDepartureDate,
-  arrivalDate,
-  setArrivalDate,
+  returnDate,
+  setReturnDate,
   formData,
   handleChange,
   selectedRoute,
@@ -117,12 +117,12 @@ const TripDetailsFormFields: FC<Props> = ({
             color="secondary"
             variant="inline"
             inputVariant="outlined"
-            label="Arrival date"
+            label="Return date"
             format="DD/MM/YYYY"
-            value={arrivalDate}
+            value={returnDate}
             minDate={dayjs()}
             InputAdornmentProps={{ position: "start" }}
-            onChange={setArrivalDate}
+            onChange={setReturnDate}
             style={{ margin: "1rem", minWidth: 240 }}
           />
         )}

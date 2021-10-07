@@ -11,7 +11,7 @@ export const validateTripInfo = ({
   fromDestination,
   toDestination,
   departureDate,
-  arrivalDate,
+  returnDate,
   numberOfChildren,
   numberOfAdults,
   numberOfVehicles,
@@ -38,7 +38,7 @@ export const validateTripInfo = ({
     return false;
   }
 
-  if (isRoundtrip && !arrivalDate) {
+  if (isRoundtrip && !returnDate) {
     toast.error("No departure date selected");
     return false;
   }
@@ -46,10 +46,10 @@ export const validateTripInfo = ({
   if (
     isRoundtrip &&
     departureDate &&
-    arrivalDate &&
-    dayjs(departureDate).diff(dayjs(arrivalDate), "day") > 0
+    returnDate &&
+    dayjs(departureDate).diff(dayjs(returnDate), "day") > 0
   ) {
-    toast.error("Arrival date cannot be earlier than departure date");
+    toast.error("Return date cannot be earlier than departure date");
   }
 
   if (!/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/.test(firstName)) {
@@ -93,12 +93,12 @@ export const validateTripInfo = ({
 
   if (
     isRoundtrip &&
-    arrivalDate &&
+    returnDate &&
     !/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/.test(
-      arrivalDate
+      returnDate
     )
   ) {
-    toast.error("Arrival date is not valid!");
+    toast.error("Return date is not valid!");
     return false;
   }
 

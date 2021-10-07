@@ -24,7 +24,7 @@ namespace Cruisaholic.Models
         public string DepartureDate { get; set; }
 
         [RegularExpression(@"^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$")]
-        public string ArrivalDate { get; set; }
+        public string ReturnDate { get; set; }
 
         // CREDITCARD
         [RegularExpression(@"^[0-9]{16}$")]

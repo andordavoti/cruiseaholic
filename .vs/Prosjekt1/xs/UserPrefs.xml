@@ -1,31 +1,28 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
   <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/DAL/OrderRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Models/CustomerOrder.cs">
     <Files>
-      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="29" Column="14" />
+      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="51" Column="53" />
       <File FileName="Prosjekt1/DAL/IOrderRepository.cs" />
       <File FileName="Prosjekt1/Controllers/OrderController.cs" />
       <File FileName="Prosjekt1/Startup.cs" />
       <File FileName="Prosjekt1/Models/Customer.cs" />
-      <File FileName="Prosjekt1/Models/Order.cs" />
+      <File FileName="Prosjekt1/Models/Order.cs" Line="27" Column="33" />
       <File FileName="Prosjekt1/Models/Route.cs" />
       <File FileName="Prosjekt1/DAL/DBInit.cs" />
-      <File FileName="Prosjekt1/Models/CustomerOrder.cs" />
+      <File FileName="Prosjekt1/Models/CustomerOrder.cs" Line="21" Column="27" />
       <File FileName="Prosjekt1/DAL/OrderContext.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Prosjekt1" expanded="True">
-            <Node name="Prosjekt1" expanded="True" selected="True">
-              <Node name="ClientApp" expanded="True">
-                <Node name="src" expanded="True">
-                  <Node name="components" expanded="True" />
-                </Node>
-              </Node>
+            <Node name="Prosjekt1" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True" />
-              <Node name="Models" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="CustomerOrder.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>

@@ -85,7 +85,7 @@ const BookingPage: FC = () => {
   const [toDestination, setToDestination] = useState("");
 
   const [departureDate, setDepartureDate] = useState<null | Dayjs>(dayjs());
-  const [arrivalDate, setArrivalDate] = useState<null | Dayjs>(dayjs());
+  const [returnDate, setReturnDate] = useState<null | Dayjs>(dayjs());
 
   useEffect(() => {
     if (!routes || !fromDestination?.length || !toDestination?.length) {
@@ -151,7 +151,7 @@ const BookingPage: FC = () => {
       fromDestination,
       toDestination,
       departureDate: departureDate?.format("DD/MM/YYYY"),
-      arrivalDate: isRoundtrip ? arrivalDate?.format("DD/MM/YYYY") : null,
+      returnDate: isRoundtrip ? returnDate?.format("DD/MM/YYYY") : null,
     };
 
     if (validateTripInfo(data)) {
@@ -168,7 +168,7 @@ const BookingPage: FC = () => {
       fromDestination,
       toDestination,
       departureDate: departureDate?.format("DD/MM/YYYY"),
-      arrivalDate: isRoundtrip ? arrivalDate?.format("DD/MM/YYYY") : null,
+      returnDate: isRoundtrip ? returnDate?.format("DD/MM/YYYY") : null,
       cardNumber: Number(creditcardData.number),
       cardholderName: creditcardData.name,
       cvc: Number(creditcardData.cvc),
@@ -233,8 +233,8 @@ const BookingPage: FC = () => {
               setIsRoundtrip,
               departureDate,
               setDepartureDate,
-              arrivalDate,
-              setArrivalDate,
+              returnDate,
+              setReturnDate,
               formData,
               handleChange,
               selectedRoute,
@@ -278,8 +278,8 @@ const BookingPage: FC = () => {
                   setIsRoundtrip,
                   departureDate,
                   setDepartureDate,
-                  arrivalDate,
-                  setArrivalDate,
+                  returnDate,
+                  setReturnDate,
                   formData,
                   handleChange,
                   selectedRoute,

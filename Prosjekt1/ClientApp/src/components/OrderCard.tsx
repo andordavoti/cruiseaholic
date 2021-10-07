@@ -18,7 +18,7 @@ const OrderCard: FC<Props> = ({
   order: {
     route,
     departureDate,
-    arrivalDate,
+    returnDate,
     isRoundtrip,
     numberOfAdults,
     numberOfChildren,
@@ -56,8 +56,8 @@ const OrderCard: FC<Props> = ({
         {!!departureDate && (
           <ReferenceField field="Departure date" value={departureDate} />
         )}
-        {!!arrivalDate && (
-          <ReferenceField field="Arrival date" value={arrivalDate} />
+        {!!returnDate && (
+          <ReferenceField field="Return date" value={returnDate} />
         )}
         <ReferenceField field="Adults" value={numberOfAdults} />
         <ReferenceField field="Children" value={numberOfChildren} />

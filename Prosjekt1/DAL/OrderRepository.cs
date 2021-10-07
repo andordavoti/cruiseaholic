@@ -48,7 +48,7 @@ namespace Cruisaholic.DAL
 
                     IsRoundtrip = newOrder.IsRoundtrip,
                     DepartureDate = newOrder.DepartureDate,
-                    ArrivalDate = newOrder.ArrivalDate,
+                    ReturnDate = newOrder.ReturnDate,
 
                     CardNumber = newOrder.CardNumber,
                     CardholderName = newOrder.CardholderName,
@@ -81,7 +81,7 @@ namespace Cruisaholic.DAL
 
                     IsRoundtrip = newOrder.IsRoundtrip,
                     DepartureDate = newOrder.DepartureDate,
-                    ArrivalDate = newOrder.ArrivalDate,
+                    ReturnDate = newOrder.ReturnDate,
 
                     CardNumber = newOrder.CardNumber,
                     CardholderName = newOrder.CardholderName,
