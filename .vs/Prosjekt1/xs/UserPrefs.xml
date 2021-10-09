@@ -1,28 +1,28 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
-  <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Models/Route.cs">
+  <MonoDevelop.Ide.ItemProperties.Cruiseaholic PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cruiseaholic/Controllers/OrderController.cs">
     <Files>
-      <File FileName="Prosjekt1/Controllers/OrderController.cs" Line="162" Column="41" />
-      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="219" Column="10" />
-      <File FileName="Prosjekt1/DAL/IOrderRepository.cs" Line="18" Column="47" />
-      <File FileName="Prosjekt1/DAL/OrderContext.cs" />
-      <File FileName="Prosjekt1/DAL/DBInit.cs" Line="135" Column="38" />
-      <File FileName="Prosjekt1/Models/DBUser.cs" />
-      <File FileName="Prosjekt1/Models/Order.cs" />
-      <File FileName="Prosjekt1/Startup.cs" Line="72" Column="30" />
-      <File FileName="Prosjekt1/Models/User.cs" Line="10" Column="68" />
-      <File FileName="Prosjekt1/Models/Route.cs" Line="1" Column="1" />
+      <File FileName="Cruiseaholic/Controllers/OrderController.cs" Line="9" Column="22" />
+      <File FileName="Cruiseaholic/DAL/OrderRepository.cs" Line="219" Column="10" />
+      <File FileName="Cruiseaholic/DAL/IOrderRepository.cs" Line="18" Column="47" />
+      <File FileName="Cruiseaholic/DAL/OrderContext.cs" />
+      <File FileName="Cruiseaholic/DAL/DBInit.cs" Line="135" Column="38" />
+      <File FileName="Cruiseaholic/Models/DBUser.cs" />
+      <File FileName="Cruiseaholic/Models/Order.cs" />
+      <File FileName="Cruiseaholic/Startup.cs" Line="72" Column="30" />
+      <File FileName="Cruiseaholic/Models/User.cs" Line="10" Column="68" />
+      <File FileName="Cruiseaholic/Models/Route.cs" Line="10" Column="57" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Prosjekt1" expanded="True">
-            <Node name="Prosjekt1" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Route.cs" selected="True" />
+          <Node name="Cruiseaholic" expanded="True">
+            <Node name="Cruiseaholic" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="OrderController.cs" selected="True" />
               </Node>
+              <Node name="DAL" expanded="True" />
+              <Node name="Models" expanded="True" />
             </Node>
           </Node>
         </State>

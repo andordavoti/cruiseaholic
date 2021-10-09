@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Cruisaholic.Models
+namespace Cruiseaholic.Models
 {
     public class CustomerOrder 
     {

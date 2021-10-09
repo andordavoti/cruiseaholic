@@ -5,14 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Cruisaholic.DAL;
-using Cruisaholic.Models;
+using Cruiseaholic.DAL;
+using Cruiseaholic.Models;
 using Microsoft.Extensions.Logging;
-using Prosjekt1.DAL;
 using Newtonsoft.Json;
 using System;
 
-namespace Cruisaholic
+namespace Cruiseaholic
 {
     public class Startup
     {

@@ -1,9 +1,9 @@
-﻿using Cruisaholic.DAL;
-using Cruisaholic.Models;
+﻿using Cruiseaholic.DAL;
+using Cruiseaholic.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Prosjekt1.DAL
+namespace Cruiseaholic.DAL
 {
     public class DBInit
     {

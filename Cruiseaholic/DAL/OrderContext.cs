@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Cruisaholic.Models
+namespace Cruiseaholic.Models
 {
     public class OrderContext : DbContext
     {

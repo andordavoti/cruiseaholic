@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Cruisaholic.Models;
+using Cruiseaholic.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using System.Linq;
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace Cruisaholic.DAL
+namespace Cruiseaholic.DAL
 {
     public class OrderRepository : IOrderRepository
     {

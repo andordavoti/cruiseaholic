@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Cruisaholic.Models
+namespace Cruiseaholic.Models
 {
     public class Customer
     {

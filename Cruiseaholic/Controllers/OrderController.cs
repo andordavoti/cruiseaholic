@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Cruisaholic.DAL;
-using Cruisaholic.Models;
+using Cruiseaholic.DAL;
+using Cruiseaholic.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.AspNetCore.Http;
 
-namespace Cruisaholic.Controllers
+namespace Cruiseaholic.Controllers
 {
     [Route("[controller]/[action]")]
     public class OrderController : ControllerBase

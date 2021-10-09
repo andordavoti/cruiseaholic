@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Cruisaholic.Models;
+using Cruiseaholic.Models;
 
-namespace Cruisaholic.DAL
+namespace Cruiseaholic.DAL
 {
     public interface IOrderRepository
     {
