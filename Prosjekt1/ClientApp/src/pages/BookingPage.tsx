@@ -12,6 +12,8 @@ import MultistepBooking from "../components/MultistepBooking";
 import TripDetailsFormFields from "../components/TripDetailsFormFields";
 import PaymentFormFields from "../components/PaymentFormFields";
 import { useIsMobile } from "../hooks/useIsMobile";
+import { useDispatch } from "react-redux";
+import { getRoutes, useRoutes } from "../redux/routeSlice";
 
 const initialFormData = {
   firstName: "",
@@ -64,14 +66,14 @@ const BookingPage: FC = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const isMobile = useIsMobile();
-
   const history = useHistory();
-
   const styles = useStyles();
+
+  const routes = useRoutes();
+  const dispatch = useDispatch();
 
   const expiryRef = useRef<null | HTMLInputElement>(null);
 
-  const [routes, setRoutes] = useState<Route[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<undefined | Route>(
     undefined
   );
@@ -108,19 +110,8 @@ const BookingPage: FC = () => {
   }, [creditcardData.expiry]);
 
   useEffect(() => {
-    const fetchRoutes = async () => {
-      try {
-        const res = await fetch("order/getRoutes");
-        const data = await res.json();
-        setRoutes(data);
-      } catch (err) {
-        console.log(err);
-        toast.error("Something went wrong getting available routes");
-      }
-    };
-
-    fetchRoutes();
-  }, []);
+    dispatch(getRoutes());
+  }, [dispatch]);
 
   const handleCreditcardInputChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -182,17 +173,13 @@ const BookingPage: FC = () => {
           },
         });
 
-        if (res.status === 200) {
-          const referenceEmail = await res.text();
+        const referenceEmail = await res.text();
 
-          setFormData(initialFormData);
-          setCreditcardData(initialCreditcardData);
-          toast.success("Booking was successfully registered");
+        setFormData(initialFormData);
+        setCreditcardData(initialCreditcardData);
+        toast.success("Booking was successfully registered");
 
-          history.push(`/my-orders/${referenceEmail}`);
-        } else {
-          toast.error("Something went wrong with booking your trip...");
-        }
+        history.push(`/my-orders/${referenceEmail}`);
       } catch (err) {
         console.log(err);
         toast.error("Something went wrong with booking your trip...");

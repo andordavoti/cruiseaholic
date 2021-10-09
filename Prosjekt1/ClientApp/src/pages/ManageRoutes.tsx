@@ -15,8 +15,16 @@ import {
 } from "@material-ui/core";
 import { toast } from "../App";
 import { useHistory } from "react-router-dom";
-import { Route } from "../../types";
 import { Delete, Edit } from "@material-ui/icons";
+import ManageRouteModal from "../components/ManageRouteModal";
+import {
+  getRoutes,
+  removeRoute,
+  useRoutes,
+  useRoutesLoading,
+} from "../redux/routeSlice";
+import { useDispatch } from "react-redux";
+import { Route } from "../../types";
 
 const useStyles = makeStyles({
   absoluteCenter: {
@@ -30,10 +38,19 @@ const useStyles = makeStyles({
   btnContainer: { display: "block", marginLeft: "auto", marginRight: "auto" },
 });
 
+export type ModalType = "ADD" | "EDIT";
+
 const ManageRoutes: FC = () => {
   const history = useHistory();
-  const [isLoading, setIsLoading] = useState(true);
-  const [routes, setRoutes] = useState<Route[]>([]);
+  const [modalType, setModalType] = useState<ModalType>("ADD");
+  const [activeEditRoute, setActiveEditRoute] = useState<null | Route>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  const routes = useRoutes();
+  const routesLoading = useRoutesLoading();
+
+  const dispatch = useDispatch();
 
   const theme = useTheme();
   const styles = useStyles();
@@ -46,7 +63,6 @@ const ManageRoutes: FC = () => {
   useEffect(() => {
     const init = async () => {
       try {
-        setIsLoading(true);
         const res = await fetch("order/authorizeUser");
         if (res.status === 401) {
           history.push("/login");
@@ -54,7 +70,7 @@ const ManageRoutes: FC = () => {
             "You are not logged in, you need to log in to manage routes"
           );
         }
-        setIsLoading(false);
+        setAuthLoading(false);
       } catch (err) {
         console.log(err);
         toast.error("Something went wrong, try again later...");
@@ -65,23 +81,10 @@ const ManageRoutes: FC = () => {
   }, [history]);
 
   useEffect(() => {
-    const fetchRoutes = async () => {
-      try {
-        setIsLoading(true);
-        const res = await fetch("order/getRoutes");
-        const data = await res.json();
-        setRoutes(data);
-        setIsLoading(false);
-      } catch (err) {
-        console.log(err);
-        toast.error("Something went wrong getting available routes");
-      }
-    };
+    dispatch(getRoutes());
+  }, [dispatch]);
 
-    fetchRoutes();
-  }, []);
-
-  if (isLoading) {
+  if (authLoading || routesLoading) {
     return (
       <div className={styles.absoluteCenter}>
         <CircularProgress color="secondary" />
@@ -120,54 +123,47 @@ const ManageRoutes: FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {routes.map(
-              (
-                {
-                  fromDestination,
-                  toDestination,
-                  priceAdults,
-                  priceChildren,
-                  priceVehicle,
-                },
-                index
-              ) => (
-                <TableRow key={index}>
-                  <TableCell>{fromDestination}</TableCell>
-                  <TableCell>{toDestination}</TableCell>
-                  <TableCell align="right">{priceAdults}</TableCell>
-                  <TableCell align="right">{priceChildren}</TableCell>
-                  <TableCell align="right">{priceVehicle}</TableCell>
-                  <TableCell align="right">
-                    <IconButton
-                      style={{ color: "#F28300" }}
-                      // TODO: implement this
-                      onClick={() => true}
-                    >
-                      <Edit />
-                    </IconButton>
-                  </TableCell>
-                  <TableCell align="right">
-                    <IconButton
-                      style={{
-                        color: "#B22222",
-                      }}
-                      // TODO: implement this
-                      onClick={() => true}
-                    >
-                      <Delete />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              )
-            )}
+            {routes?.map((route, index) => (
+              <TableRow key={index}>
+                <TableCell>{route.fromDestination}</TableCell>
+                <TableCell>{route.toDestination}</TableCell>
+                <TableCell align="right">{route.priceAdults}</TableCell>
+                <TableCell align="right">{route.priceChildren}</TableCell>
+                <TableCell align="right">{route.priceVehicle}</TableCell>
+                <TableCell align="right">
+                  <IconButton
+                    style={{ color: "#F28300" }}
+                    onClick={() => {
+                      setModalType("EDIT");
+                      setActiveEditRoute(route);
+                      setModalVisible(true);
+                    }}
+                  >
+                    <Edit />
+                  </IconButton>
+                </TableCell>
+                <TableCell align="right">
+                  <IconButton
+                    style={{
+                      color: "#B22222",
+                    }}
+                    onClick={() => dispatch(removeRoute(route.id))}
+                  >
+                    <Delete />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
 
       <div className={styles.btnContainer}>
         <Button
-          // TODO: implement this
-          onClick={() => true}
+          onClick={() => {
+            setModalType("ADD");
+            setModalVisible(true);
+          }}
           variant="contained"
           color="primary"
           style={{
@@ -193,6 +189,16 @@ const ManageRoutes: FC = () => {
           Logout
         </Button>
       </div>
+
+      <ManageRouteModal
+        type={modalType}
+        open={modalVisible}
+        editRoute={activeEditRoute}
+        onClose={() => {
+          setModalVisible(false);
+          setActiveEditRoute(null);
+        }}
+      />
     </div>
   );
 };

@@ -15,6 +15,8 @@ import MyOrdersPage from "./pages/MyOrdersPage";
 import BookingPage from "./pages/BookingPage";
 import LoginPage from "./pages/LoginPage";
 import ManageRoutes from "./pages/ManageRoutes";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export const toast = new Notyf({ duration: 3000 });
 
@@ -22,19 +24,21 @@ const theme = createTheme(themeOptions);
 
 const App: FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <MuiPickersUtilsProvider utils={DayjsUtils}>
-        <Layout>
-          <>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/booking" component={BookingPage} />
-            <Route exact path="/my-orders/:email?" component={MyOrdersPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/manage-routes" component={ManageRoutes} />
-          </>
-        </Layout>
-      </MuiPickersUtilsProvider>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider utils={DayjsUtils}>
+          <Layout>
+            <>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/booking" component={BookingPage} />
+              <Route exact path="/my-orders/:email?" component={MyOrdersPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/manage-routes" component={ManageRoutes} />
+            </>
+          </Layout>
+        </MuiPickersUtilsProvider>
+      </ThemeProvider>
+    </Provider>
   );
 };
 
