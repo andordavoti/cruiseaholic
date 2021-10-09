@@ -111,13 +111,8 @@ const BookingPage: FC = () => {
     const fetchRoutes = async () => {
       try {
         const res = await fetch("order/getRoutes");
-
-        if (res.status === 200) {
-          const data = await res.json();
-          setRoutes(data);
-        } else {
-          toast.error("Something went wrong getting available routes");
-        }
+        const data = await res.json();
+        setRoutes(data);
       } catch (err) {
         console.log(err);
         toast.error("Something went wrong getting available routes");

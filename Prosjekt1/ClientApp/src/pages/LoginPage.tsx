@@ -84,7 +84,7 @@ const LoginPage: FC = () => {
           label="Username"
           variant="outlined"
           color="secondary"
-          style={{ margin: "1rem", minWidth: 240 }}
+          style={{ marginTop: "2rem", margin: "1rem", minWidth: 240 }}
           value={formData.username}
           onChange={handleChange}
         />
@@ -101,18 +101,22 @@ const LoginPage: FC = () => {
           onChange={handleChange}
         />
 
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{
-            color: theme.palette.secondary.main,
-            borderRadius: 25,
-            marginTop: "1rem",
-          }}
+        <div
+          style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
         >
-          Login
-        </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{
+              color: theme.palette.secondary.main,
+              borderRadius: 25,
+              marginTop: "1rem",
+            }}
+          >
+            Login
+          </Button>
+        </div>
       </form>
     </div>
   );
