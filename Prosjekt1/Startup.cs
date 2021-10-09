@@ -10,6 +10,7 @@ using Cruisaholic.Models;
 using Microsoft.Extensions.Logging;
 using Prosjekt1.DAL;
 using Newtonsoft.Json;
+using System;
 
 namespace Cruisaholic
 {
@@ -33,6 +34,14 @@ namespace Cruisaholic
             services.AddDbContext<OrderContext>(options => options.UseSqlite("Data source=Order.db"));
             services.AddScoped<IOrderRepository, OrderRepository>();
 
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(1800); // 30 minutes
+                options.Cookie.IsEssential = true;
+            });
+            services.AddDistributedMemoryCache();
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -46,7 +55,7 @@ namespace Cruisaholic
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                DBInit.init(app);
+                DBInit.Init(app);
                 loggerFactory.AddFile("Logs/OrdersLog.txt");
             }
             else
@@ -59,6 +68,8 @@ namespace Cruisaholic
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

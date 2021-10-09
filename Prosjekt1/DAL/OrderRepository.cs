@@ -3,6 +3,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Cruisaholic.Models;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
+using System.Linq;
+using System;
+using Microsoft.Extensions.Logging;
 
 namespace Cruisaholic.DAL
 {
@@ -11,10 +16,13 @@ namespace Cruisaholic.DAL
 
         private readonly OrderContext _orderDB;
 
+        private ILogger<OrderRepository> _orderLog;
 
-        public OrderRepository(OrderContext orderDB)
+
+        public OrderRepository(OrderContext orderDB, ILogger<OrderRepository> orderLog)
         {
             _orderDB = orderDB;
+            _orderLog = orderLog;
 
         }
 
@@ -121,6 +129,92 @@ namespace Cruisaholic.DAL
             catch
             {
                 return null;
+            }
+        }
+
+        public async Task<List<Route>> AddRoute([FromBody] Route route)
+        {
+            try
+            {
+                _orderDB.Route.Add(route);
+                await _orderDB.SaveChangesAsync();
+                var routes = await _orderDB.Route.ToListAsync();
+                return routes;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<Route>> ChangeRoute([FromBody] Route route)
+        {
+            try
+            {
+                Route routeToChange = await _orderDB.Route.FindAsync(route.Id);
+                routeToChange.FromDestination = route.FromDestination;
+                routeToChange.ToDestination = route.ToDestination;
+                routeToChange.PriceChildren = route.PriceChildren;
+                routeToChange.PriceAdults = route.PriceAdults;
+                routeToChange.PriceVehicle = route.PriceVehicle;
+
+                await _orderDB.SaveChangesAsync();
+                var routes = await _orderDB.Route.ToListAsync();
+                return routes;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<Route>> RemoveRoute(int id)
+        {
+            try
+            {
+                Route routeToRemove = await _orderDB.Route.FindAsync(id);
+                _orderDB.Route.Remove(routeToRemove);
+                await _orderDB.SaveChangesAsync();
+                var routes = await _orderDB.Route.ToListAsync();
+                return routes;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static byte[] CreateHash(string password, byte[] salt)
+        {
+            return KeyDerivation.Pbkdf2(
+                                password: password,
+                                salt: salt,
+                                prf: KeyDerivationPrf.HMACSHA512,
+                                iterationCount: 1000,
+                                numBytesRequested: 32);
+        }
+
+        public static byte[] CreateSalt()
+        {
+            var csp = new RNGCryptoServiceProvider();
+            var salt = new byte[24];
+            csp.GetBytes(salt);
+            return salt;
+        }
+
+        public async Task<bool> Login(User user)
+        {
+            try
+            {
+                DBUser userFromDB = await _orderDB.User.FirstOrDefaultAsync(u => u.Username == user.Username);
+                byte[] hash = CreateHash(user.Password, userFromDB.Salt);
+                bool ok = hash.SequenceEqual(userFromDB.Password);
+                return ok;
+            }
+            catch (Exception err)
+            {
+                _orderLog.LogInformation(err.Message);
+                return false;
             }
         }
     }

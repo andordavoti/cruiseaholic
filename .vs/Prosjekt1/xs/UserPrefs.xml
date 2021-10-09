@@ -1,17 +1,15 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
   <MonoDevelop.Ide.ItemProperties.Prosjekt1 PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/Models/CustomerOrder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Prosjekt1/DAL/OrderRepository.cs">
     <Files>
-      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="51" Column="53" />
-      <File FileName="Prosjekt1/DAL/IOrderRepository.cs" />
-      <File FileName="Prosjekt1/Controllers/OrderController.cs" />
-      <File FileName="Prosjekt1/Startup.cs" />
-      <File FileName="Prosjekt1/Models/Customer.cs" />
-      <File FileName="Prosjekt1/Models/Order.cs" />
-      <File FileName="Prosjekt1/Models/Route.cs" />
-      <File FileName="Prosjekt1/DAL/DBInit.cs" />
-      <File FileName="Prosjekt1/Models/CustomerOrder.cs" Line="2" Column="1" />
+      <File FileName="Prosjekt1/Controllers/OrderController.cs" Line="102" Column="52" />
+      <File FileName="Prosjekt1/DAL/OrderRepository.cs" Line="170" Column="54" />
+      <File FileName="Prosjekt1/DAL/IOrderRepository.cs" Line="16" Column="1" />
       <File FileName="Prosjekt1/DAL/OrderContext.cs" />
+      <File FileName="Prosjekt1/DAL/DBInit.cs" Line="135" Column="38" />
+      <File FileName="Prosjekt1/Models/DBUser.cs" />
+      <File FileName="Prosjekt1/Models/Order.cs" />
+      <File FileName="Prosjekt1/Startup.cs" Line="72" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,10 +17,10 @@
           <Node name="Prosjekt1" expanded="True">
             <Node name="Prosjekt1" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="CustomerOrder.cs" selected="True" />
+              <Node name="DAL" expanded="True">
+                <Node name="OrderRepository.cs" selected="True" />
               </Node>
+              <Node name="Models" expanded="True" />
             </Node>
           </Node>
         </State>

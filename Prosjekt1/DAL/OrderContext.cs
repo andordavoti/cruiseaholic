@@ -12,6 +12,7 @@ namespace Cruisaholic.Models
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Route> Route { get; set; }
+        public DbSet<DBUser> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
