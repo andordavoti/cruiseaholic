@@ -5,7 +5,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { toast } from "../App";
 import { Focused } from "react-credit-cards";
 import { validatePayment, validateTripInfo } from "../utils/validateForm";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { CustomerOrder, Route, TripInfo } from "../../types";
 import { getFromDestinations } from "../utils/getFromDestinations";
 import MultistepBooking from "../components/MultistepBooking";
@@ -65,6 +65,8 @@ const BookingPage: FC = () => {
 
   const isMobile = useIsMobile();
 
+  const history = useHistory();
+
   const styles = useStyles();
 
   const expiryRef = useRef<null | HTMLInputElement>(null);
@@ -73,8 +75,6 @@ const BookingPage: FC = () => {
   const [selectedRoute, setSelectedRoute] = useState<undefined | Route>(
     undefined
   );
-
-  const [referenceEmail, setReferenceEmail] = useState<null | string>(null);
 
   const [formData, setFormData] = useState(initialFormData);
   const [creditcardData, setCreditcardData] = useState(initialCreditcardData);
@@ -194,7 +194,7 @@ const BookingPage: FC = () => {
           setCreditcardData(initialCreditcardData);
           toast.success("Booking was successfully registered");
 
-          setReferenceEmail(referenceEmail);
+          history.push(`/my-orders/${referenceEmail}`);
         } else {
           toast.error("Something went wrong with booking your trip...");
         }
@@ -204,10 +204,6 @@ const BookingPage: FC = () => {
       }
     }
   };
-
-  if (referenceEmail) {
-    return <Redirect to={`/my-orders/${referenceEmail}`} />;
-  }
 
   return (
     <div
