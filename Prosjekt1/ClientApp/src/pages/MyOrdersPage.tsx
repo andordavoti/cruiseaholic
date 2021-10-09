@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@material-ui/core";
 import { FC, useEffect, useState } from "react";
-import { Redirect, RouteComponentProps } from "react-router-dom";
+import { Redirect, RouteComponentProps, useHistory } from "react-router-dom";
 import { CustomerInfo } from "../../types";
 import { toast } from "../App";
 import OrderCard from "../components/OrderCard";
@@ -37,6 +37,8 @@ const MyOrdersPage: FC<Props> = ({
   },
 }) => {
   const theme = useTheme();
+
+  const history = useHistory();
 
   const [order, setOrder] = useState<null | CustomerInfo>(null);
   const [orderLoading, setOrderLoading] = useState(true);
@@ -83,7 +85,10 @@ const MyOrdersPage: FC<Props> = ({
           </Typography>
 
           <Button
-            onClick={() => setCustomerEmail(undefined)}
+            onClick={() => {
+              setCustomerEmail(undefined);
+              history.push("/my-orders");
+            }}
             variant="contained"
             color="primary"
             style={{
@@ -91,7 +96,7 @@ const MyOrdersPage: FC<Props> = ({
               borderRadius: 25,
             }}
           >
-            Try again
+            Try a different email
           </Button>
         </div>
       );
@@ -126,6 +131,7 @@ const MyOrdersPage: FC<Props> = ({
             onClick={() => {
               setOrder(null);
               setCustomerEmail(undefined);
+              history.push("/my-orders");
             }}
             variant="contained"
             color="primary"
