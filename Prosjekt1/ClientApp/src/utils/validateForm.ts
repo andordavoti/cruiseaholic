@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { toast } from "../App";
-import { Creditcard, TripInfo } from "../../types";
+import { Creditcard, TripInfo, User } from "../../types";
 
 export const validateTripInfo = ({
   firstName,
@@ -126,6 +126,20 @@ export const validatePayment = ({
 
   if (!/^[0-9 \/]{5}$/.test(expiry)) {
     toast.error("Card expiry is not valid!");
+    return false;
+  }
+
+  return true;
+};
+
+export const validateUser = ({ username, password }: User): boolean => {
+  if (!/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/.test(username)) {
+    toast.error("Username is not valid!");
+    return false;
+  }
+
+  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password)) {
+    toast.error("Password is not valid!");
     return false;
   }
 

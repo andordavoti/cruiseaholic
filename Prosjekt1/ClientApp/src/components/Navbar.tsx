@@ -188,6 +188,25 @@ const Navbar: React.FC = () => {
                         </NavLink>
                       </div>
                     </ListItem>
+
+                    <ListItem>
+                      <div className={styles.navItem}>
+                        <NavLink
+                          to="/manage-routes"
+                          className={styles.inActiveNav}
+                          activeClassName={styles.activeNav}
+                        >
+                          <Typography
+                            color="inherit"
+                            variant="h6"
+                            className="navLink"
+                            style={{ fontWeight: "normal" }}
+                          >
+                            Manage Routes
+                          </Typography>
+                        </NavLink>
+                      </div>
+                    </ListItem>
                   </List>
                 </div>
               </SwipeableDrawer>
@@ -243,6 +262,23 @@ const Navbar: React.FC = () => {
                     style={{ fontWeight: "normal" }}
                   >
                     My orders
+                  </Typography>
+                </NavLink>
+              </div>
+
+              <div className={styles.navItem}>
+                <NavLink
+                  to="/manage-routes"
+                  className={styles.inActiveNav}
+                  activeClassName={styles.activeNav}
+                >
+                  <Typography
+                    color="inherit"
+                    variant="h6"
+                    className="navLink"
+                    style={{ fontWeight: "normal" }}
+                  >
+                    Manage Routes
                   </Typography>
                 </NavLink>
               </div>

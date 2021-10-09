@@ -13,6 +13,8 @@ import "notyf/notyf.min.css";
 import "react-credit-cards/es/styles-compiled.css";
 import MyOrdersPage from "./pages/MyOrdersPage";
 import BookingPage from "./pages/BookingPage";
+import LoginPage from "./pages/LoginPage";
+import ManageRoutes from "./pages/ManageRoutes";
 
 export const toast = new Notyf({ duration: 3000 });
 
@@ -26,7 +28,9 @@ const App: FC = () => {
           <>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/booking" component={BookingPage} />
-            <Route exact path={`/my-orders/:email?`} component={MyOrdersPage} />
+            <Route exact path="/my-orders/:email?" component={MyOrdersPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/manage-routes" component={ManageRoutes} />
           </>
         </Layout>
       </MuiPickersUtilsProvider>

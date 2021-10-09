@@ -150,7 +150,8 @@ namespace Cruisaholic.Controllers
             }
         }
 
-        public async Task<ActionResult> Login(User user)
+        [HttpPost]
+        public async Task<ActionResult> Login([FromBody] User user)
         {
             if (ModelState.IsValid)
             {
@@ -158,7 +159,7 @@ namespace Cruisaholic.Controllers
                 if (!ok)
                 {
                     _orderLog.LogInformation("Login failed for username: " + user.Username);
-                    HttpContext.Session.SetString(_isLoggedIn, null);
+                    HttpContext.Session.SetString(_isLoggedIn, "");
                     return Ok(false);
                 }
                 HttpContext.Session.SetString(_isLoggedIn, "YES");
@@ -170,7 +171,7 @@ namespace Cruisaholic.Controllers
 
         public void LogOut()
         {
-            HttpContext.Session.SetString(_isLoggedIn, null);
+            HttpContext.Session.SetString(_isLoggedIn, "");
         }
     }
 }
