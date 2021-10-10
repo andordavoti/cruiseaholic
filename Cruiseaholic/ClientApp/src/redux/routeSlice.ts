@@ -29,9 +29,14 @@ export const getRoutes = createAsyncThunk(
   }
 );
 
+interface AddRouteParam {
+  route: Omit<Route, "id">;
+  history: any;
+}
+
 export const addRoute = createAsyncThunk(
   `${namespace}/addRoute`,
-  async (route: Omit<Route, "id">) => {
+  async ({ route, history }: AddRouteParam) => {
     try {
       const res = await fetch("order/addRoute", {
         method: "post",
@@ -40,6 +45,14 @@ export const addRoute = createAsyncThunk(
           "Content-Type": "application/json",
         },
       });
+
+      if (res.status === 401) {
+        toast.error(
+          "You are not logged in, you need to log in to manage routes"
+        );
+        history.push("/login");
+      }
+
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -48,9 +61,14 @@ export const addRoute = createAsyncThunk(
   }
 );
 
+interface ChangeRouteParam {
+  route: Route;
+  history: any;
+}
+
 export const changeRoute = createAsyncThunk(
   `${namespace}/changeRoute`,
-  async (route: Route) => {
+  async ({ route, history }: ChangeRouteParam) => {
     try {
       const res = await fetch("order/changeRoute", {
         method: "post",
@@ -59,6 +77,14 @@ export const changeRoute = createAsyncThunk(
           "Content-Type": "application/json",
         },
       });
+
+      if (res.status === 401) {
+        toast.error(
+          "You are not logged in, you need to log in to manage routes"
+        );
+        history.push("/login");
+      }
+
       return await res.json();
     } catch (err) {
       console.log(err);
@@ -67,13 +93,26 @@ export const changeRoute = createAsyncThunk(
   }
 );
 
+interface RemoveRouteParam {
+  id: number;
+  history: any;
+}
+
 export const removeRoute = createAsyncThunk(
   `${namespace}/removeRoute`,
-  async (id: number) => {
+  async ({ id, history }: RemoveRouteParam) => {
     try {
       const res = await fetch(`order/removeRoute?id=${id}`, {
         method: "delete",
       });
+
+      if (res.status === 401) {
+        toast.error(
+          "You are not logged in, you need to log in to manage routes"
+        );
+        history.push("/login");
+      }
+
       return await res.json();
     } catch (err) {
       console.log(err);

@@ -14,7 +14,7 @@ import "react-credit-cards/es/styles-compiled.css";
 import MyOrdersPage from "./pages/MyOrdersPage";
 import BookingPage from "./pages/BookingPage";
 import LoginPage from "./pages/LoginPage";
-import ManageRoutes from "./pages/ManageRoutes";
+import ManageRoutes from "./pages/ManageRoutesPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 

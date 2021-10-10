@@ -147,7 +147,9 @@ const ManageRoutes: FC = () => {
                     style={{
                       color: "#B22222",
                     }}
-                    onClick={() => dispatch(removeRoute(route.id))}
+                    onClick={() =>
+                      dispatch(removeRoute({ id: route.id, history }))
+                    }
                   >
                     <Delete />
                   </IconButton>
@@ -186,7 +188,7 @@ const ManageRoutes: FC = () => {
             marginTop: "2rem",
           }}
         >
-          Logout
+          Log out
         </Button>
       </div>
 

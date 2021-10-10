@@ -1,21 +1,5 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cruiseaholic/Pages/Error.cshtml">
-    <Files>
-      <File FileName="Cruiseaholic/Controllers/OrderController.cs" Line="9" Column="23" />
-      <File FileName="Cruiseaholic/Startup.cs" Line="11" Column="1" />
-      <File FileName="Cruiseaholic/Pages/Error.cshtml" Line="2" Column="13" />
-      <File FileName="Cruiseaholic/Pages/_ViewImports.cshtml" Line="2" Column="18" />
-      <File FileName="Cruiseaholic/Models/CustomerOrder.cs" Line="1" Column="28" />
-      <File FileName="Cruiseaholic/DAL/DBInit.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/DAL/IOrderRepository.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/DAL/OrderContext.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/DAL/OrderRepository.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/Models/Customer.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/Models/DBUser.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/Models/Order.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/Models/Route.cs" Line="1" Column="1" />
-      <File FileName="Cruiseaholic/Models/User.cs" Line="1" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -23,10 +7,10 @@
             <Node name="Cruiseaholic" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Pages" expanded="True">
-                <Node name="Error.cshtml" selected="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Order.cs" selected="True" />
               </Node>
+              <Node name="Pages" expanded="True" />
             </Node>
           </Node>
         </State>

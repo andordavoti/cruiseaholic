@@ -10,8 +10,9 @@ import {
 import { Close } from "@material-ui/icons";
 import { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { Route } from "../../types";
-import { ModalType } from "../pages/ManageRoutes";
+import { ModalType } from "../pages/ManageRoutesPage";
 import { addRoute, changeRoute } from "../redux/routeSlice";
 import { validateRoute } from "../utils/validateForm";
 
@@ -32,6 +33,7 @@ const initialFormData = {
 
 const ManageRouteModal: FC<Props> = ({ type, open, onClose, editRoute }) => {
   const theme = useTheme();
+  const history = useHistory();
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -53,9 +55,11 @@ const ManageRouteModal: FC<Props> = ({ type, open, onClose, editRoute }) => {
 
     if (validateRoute(formData)) {
       if (type === "ADD") {
-        dispatch(addRoute(formData));
+        dispatch(addRoute({ route: formData, history }));
       } else if (type === "EDIT" && editRoute?.id) {
-        dispatch(changeRoute({ ...formData, id: editRoute.id }));
+        dispatch(
+          changeRoute({ route: { ...formData, id: editRoute.id }, history })
+        );
       }
       onClose();
     }
