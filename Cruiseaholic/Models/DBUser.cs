@@ -1,5 +1,4 @@
-﻿using System;
-namespace Cruiseaholic.Models
+﻿namespace Cruiseaholic.Models
 {
     public class DBUser
     {

@@ -1,0 +1,171 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/CruiseaholicTest.csproj": {}
+  },
+  "projects": {
+    "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/Cruiseaholic/Cruiseaholic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/Cruiseaholic/Cruiseaholic.csproj",
+        "projectName": "Cruiseaholic",
+        "projectPath": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/Cruiseaholic/Cruiseaholic.csproj",
+        "packagesPath": "/Users/andordavoti/.nuget/packages/",
+        "outputPath": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/Cruiseaholic/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/andordavoti/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.SpaServices.Extensions": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
+            "Serilog.Extensions.Logging.File": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/CruiseaholicTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/CruiseaholicTest.csproj",
+        "projectName": "CruiseaholicTest",
+        "projectPath": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/CruiseaholicTest.csproj",
+        "packagesPath": "/Users/andordavoti/.nuget/packages/",
+        "outputPath": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/andordavoti/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/Cruiseaholic/Cruiseaholic.csproj": {
+                "projectPath": "/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/Cruiseaholic/Cruiseaholic.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.9.4, )"
+            },
+            "Moq.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0.2, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.401/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

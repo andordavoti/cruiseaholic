@@ -1,17 +1,25 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="CruiseaholicTest/OrderControllerTest.cs">
+    <Files>
+      <File FileName="CruiseaholicTest/OrderControllerTest.cs" Line="263" Column="23" />
+      <File FileName="Cruiseaholic/Controllers/OrderController.cs" />
+      <File FileName="Cruiseaholic/DAL/IOrderRepository.cs" />
+      <File FileName="Cruiseaholic/DAL/OrderContext.cs" />
+      <File FileName="Cruiseaholic/DAL/DBInit.cs" />
+      <File FileName="Cruiseaholic/Models/User.cs" />
+      <File FileName="Cruiseaholic/DAL/OrderRepository.cs" />
+      <File FileName="Cruiseaholic/Models/DBUser.cs" />
+      <File FileName="Readme.txt" />
+      <File FileName="CruiseaholicTest/MockHttpSession.cs" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Cruiseaholic" expanded="True">
             <Node name="Cruiseaholic" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Order.cs" selected="True" />
-              </Node>
-              <Node name="Pages" expanded="True" />
             </Node>
+            <Node name="CruiseaholicTest" expanded="True" />
           </Node>
         </State>
       </Pad>
