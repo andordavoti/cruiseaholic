@@ -1,5 +1,8 @@
-﻿namespace Cruiseaholic.Models
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Cruiseaholic.Models
 {
+    [ExcludeFromCodeCoverage]
     public class DBUser
     {
         public int Id { get; set; }

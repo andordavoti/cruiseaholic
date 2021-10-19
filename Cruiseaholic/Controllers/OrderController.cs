@@ -35,12 +35,12 @@ namespace Cruiseaholic.Controllers
                 }
                 catch (Exception err)
                 {
-                    _orderLog.LogInformation("Something went wrong saving the order! Err: " + err);
-                    return BadRequest("Something went wrong saving the order!" + err);
+                    _orderLog.LogInformation("Something went wrong saving the order! Error: " + err);
+                    return BadRequest("Something went wrong saving the order!");
                 }
             }
-            _orderLog.LogInformation("Model not valid in NewOrder! Number of errors: " + ModelState.ErrorCount);
-            return BadRequest("Model not valid in NewOrder! Number of errors: " + ModelState.ErrorCount);
+            _orderLog.LogInformation("Model not valid in NewOrder!");
+            return BadRequest("Model not valid in NewOrder!");
         }
 
         public async Task<ActionResult> GetCustomerInfo(string email)
@@ -90,8 +90,8 @@ namespace Cruiseaholic.Controllers
                 return Ok(routes);
             }
 
-            _orderLog.LogInformation("Model not valid in AddRoute! Number of errors: " + ModelState.ErrorCount);
-            return BadRequest("Model not valid in AddRoute! Number of errors: " + ModelState.ErrorCount);
+            _orderLog.LogInformation("Model not valid in AddRoute!");
+            return BadRequest("Model not valid in AddRoute!");
         }
 
         [HttpPost]
@@ -115,8 +115,8 @@ namespace Cruiseaholic.Controllers
                 return Ok(routes);
             }
 
-            _orderLog.LogInformation("Model not valid in ChangeRoute! Number of errors: " + ModelState.ErrorCount);
-            return BadRequest("Model not valid in ChangeRoute! Number of errors: " + ModelState.ErrorCount);
+            _orderLog.LogInformation("Model not valid in ChangeRoute!");
+            return BadRequest("Model not valid in ChangeRoute!");
         }
 
         [HttpDelete]
@@ -165,13 +165,14 @@ namespace Cruiseaholic.Controllers
                 HttpContext.Session.SetString(_isLoggedIn, "YES");
                 return Ok(true);
             }
-            _orderLog.LogInformation("Model not valid in LoggInn! Number of errors: " + ModelState.ErrorCount);
-            return BadRequest("Model not valid in LoggInn! Number of errors: " + ModelState.ErrorCount);
+            _orderLog.LogInformation("Model not valid in LoggInn!");
+            return BadRequest("Model not valid in LoggInn!");
         }
 
-        public void LogOut()
+        public ActionResult LogOut()
         {
             HttpContext.Session.SetString(_isLoggedIn, "");
+            return Ok();
         }
     }
 }

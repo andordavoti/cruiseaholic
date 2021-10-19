@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cruiseaholic.Models
 {
+    [ExcludeFromCodeCoverage]
     public class OrderContext : DbContext
     {
         public OrderContext(DbContextOptions<OrderContext> options) : base(options)

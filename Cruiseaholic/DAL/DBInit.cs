@@ -1,10 +1,11 @@
-﻿using Cruiseaholic.DAL;
+﻿using System.Diagnostics.CodeAnalysis;
 using Cruiseaholic.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cruiseaholic.DAL
 {
+    [ExcludeFromCodeCoverage]
     public class DBInit
     {
         public static void Init(IApplicationBuilder app)

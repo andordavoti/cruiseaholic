@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Cruiseaholic.Models
 {
+    [ExcludeFromCodeCoverage]
     public class CustomerOrder 
     {
         // TRIP

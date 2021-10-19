@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Cruiseaholic.Models
 {
+    [ExcludeFromCodeCoverage]
     public class User
     {
         [RegularExpression(@"^[a-zA-ZæøåÆØÅ. \-]{2,20}$")]

@@ -1,8 +1,4 @@
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/CoverletSourceRootsMapping
-/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.GeneratedMSBuildEditorConfig.editorconfig
-/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.AssemblyInfoInputs.cache
-/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.AssemblyInfo.cs
-/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.csproj.CoreCompileInputs.cache
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/Cruiseaholic.Views.dll
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/Cruiseaholic.Views.pdb
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/Cruiseaholic.deps.json
@@ -142,6 +138,10 @@
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/Cruiseaholic.dll
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/Cruiseaholic.pdb
+/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.AssemblyInfoInputs.cache
+/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.AssemblyInfo.cs
+/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.csproj.CoreCompileInputs.cache
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.csproj.CopyComplete
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/CruiseaholicTest.dll
 /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/obj/Debug/net5.0/ref/CruiseaholicTest.dll

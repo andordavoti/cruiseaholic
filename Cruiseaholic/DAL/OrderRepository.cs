@@ -8,9 +8,11 @@ using System.Security.Cryptography;
 using System.Linq;
 using System;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Cruiseaholic.DAL
 {
+    [ExcludeFromCodeCoverage]
     public class OrderRepository : IOrderRepository
     {
 
