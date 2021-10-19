@@ -513,7 +513,13 @@ namespace CruiseaholicTest
         public async Task LoginWrongUsernameOrPassword()
         {
             // Arrange
-            repoMock.Setup(o => o.Login(It.IsAny<User>())).ReturnsAsync(false);
+            var user = new User()
+            {
+                Username = "test",
+                Password = "123456789"
+            };
+
+            repoMock.Setup(o => o.Login(user)).ReturnsAsync(false);
 
             var orderController = new OrderController(repoMock.Object, logMock.Object);
 
@@ -522,7 +528,7 @@ namespace CruiseaholicTest
             orderController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var result = await orderController.Login(It.IsAny<User>()) as OkObjectResult;
+            var result = await orderController.Login(user) as OkObjectResult;
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
