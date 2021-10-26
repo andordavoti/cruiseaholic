@@ -18,7 +18,7 @@ namespace Cruiseaholic.DAL
 
         private readonly OrderContext _orderDB;
 
-        private ILogger<OrderRepository> _orderLog;
+        private readonly ILogger<OrderRepository> _orderLog;
 
 
         public OrderRepository(OrderContext orderDB, ILogger<OrderRepository> orderLog)

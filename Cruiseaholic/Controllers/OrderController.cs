@@ -13,7 +13,7 @@ namespace Cruiseaholic.Controllers
     {
         private readonly IOrderRepository _orderDB;
 
-        private ILogger<OrderController> _orderLog;
+        private readonly ILogger<OrderController> _orderLog;
 
         private const string _isLoggedIn = "_isLoggedIn";
 

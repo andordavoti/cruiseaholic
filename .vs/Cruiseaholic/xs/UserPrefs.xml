@@ -1,22 +1,22 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cruiseaholic/Controllers/OrderController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cruiseaholic/Startup.cs">
     <Files>
-      <File FileName="CruiseaholicTest/OrderControllerTest.cs" Line="257" Column="48" />
-      <File FileName="Cruiseaholic/Controllers/OrderController.cs" Line="179" Column="1" />
+      <File FileName="Cruiseaholic/Controllers/OrderController.cs" Line="8" Column="1" />
+      <File FileName="Cruiseaholic/Startup.cs" Line="60" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Cruiseaholic" expanded="True">
             <Node name="Cruiseaholic" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="OrderController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True" />
+              <Node name="Logs" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True">
                 <Node name="Error.cshtml" expanded="True" />
               </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
             <Node name="CruiseaholicTest" expanded="True" />
           </Node>
@@ -39,9 +39,7 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/OrderControllerTest.cs" relfile="CruiseaholicTest/OrderControllerTest.cs" line="525" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
