@@ -1,0 +1,69 @@
+2021-10-27 15:14:50.4518 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:14:50.4533 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:14:50.4613 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2021-10-27 15:14:50.4618 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll succeeded!
+2021-10-27 15:14:50.4618 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:14:50.4618 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:14:50.4628 Info NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.14.0.2042. Product version: 4.14.0+18bbcdbd5bd13b4565c32d72e09502b7ca6c71d4. GlobalAssemblyCache: False
+2021-10-27 15:14:50.4628 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll succeeded!
+2021-10-27 15:14:50.4657 Info Message Template Auto Format enabled
+2021-10-27 15:14:50.4684 Info Loading assembly: NLog.Web.AspNetCore
+2021-10-27 15:14:50.5034 Info Adding target FileTarget(Name=cruiseaholic-logs)
+2021-10-27 15:14:50.5054 Info Adding target FileTarget(Name=cruiseaholic-db-changes)
+2021-10-27 15:14:50.6589 Info Validating config: TargetNames=cruiseaholic-logs, cruiseaholic-db-changes, ConfigItems=34, FilePath=/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.config
+2021-10-27 15:14:50.6828 Info Configuration initialized.
+2021-10-27 15:14:50.6836 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.11.13229. Product version: 4.7.11+33ed3a9f86277651e93ddf39cda64a046a06778b. GlobalAssemblyCache: False
+2021-10-27 15:14:50.8100 Info AppDomain Shutting down. Logger closing...
+2021-10-27 15:14:50.8188 Info Logger has been shut down.
+2021-10-27 15:15:01.2767 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:15:01.2778 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:15:01.2828 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2021-10-27 15:15:01.2828 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll succeeded!
+2021-10-27 15:15:01.2836 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:15:01.2836 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:15:01.2847 Info NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.14.0.2042. Product version: 4.14.0+18bbcdbd5bd13b4565c32d72e09502b7ca6c71d4. GlobalAssemblyCache: False
+2021-10-27 15:15:01.2847 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll succeeded!
+2021-10-27 15:15:01.2882 Info Message Template Auto Format enabled
+2021-10-27 15:15:01.2905 Info Loading assembly: NLog.Web.AspNetCore
+2021-10-27 15:15:01.3191 Info Adding target FileTarget(Name=cruiseaholic-logs)
+2021-10-27 15:15:01.3197 Info Adding target FileTarget(Name=cruiseaholic-db-changes)
+2021-10-27 15:15:01.4327 Info Validating config: TargetNames=cruiseaholic-logs, cruiseaholic-db-changes, ConfigItems=34, FilePath=/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.config
+2021-10-27 15:15:01.4499 Info Configuration initialized.
+2021-10-27 15:15:01.4510 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.11.13229. Product version: 4.7.11+33ed3a9f86277651e93ddf39cda64a046a06778b. GlobalAssemblyCache: False
+2021-10-27 15:15:01.5973 Info AppDomain Shutting down. Logger closing...
+2021-10-27 15:15:01.6057 Info Logger has been shut down.
+2021-10-27 15:15:19.0097 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:15:19.0106 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:15:19.0141 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2021-10-27 15:15:19.0145 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll succeeded!
+2021-10-27 15:15:19.0145 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:15:19.0145 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:15:19.0154 Info NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.14.0.2042. Product version: 4.14.0+18bbcdbd5bd13b4565c32d72e09502b7ca6c71d4. GlobalAssemblyCache: False
+2021-10-27 15:15:19.0154 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll succeeded!
+2021-10-27 15:15:19.0182 Info Message Template Auto Format enabled
+2021-10-27 15:15:19.0210 Info Loading assembly: NLog.Web.AspNetCore
+2021-10-27 15:15:19.0552 Info Adding target FileTarget(Name=cruiseaholic-logs)
+2021-10-27 15:15:19.0560 Info Adding target FileTarget(Name=cruiseaholic-db-changes)
+2021-10-27 15:15:19.2060 Info Validating config: TargetNames=cruiseaholic-logs, cruiseaholic-db-changes, ConfigItems=34, FilePath=/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.config
+2021-10-27 15:15:19.2179 Info Configuration initialized.
+2021-10-27 15:15:19.2179 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.11.13229. Product version: 4.7.11+33ed3a9f86277651e93ddf39cda64a046a06778b. GlobalAssemblyCache: False
+2021-10-27 15:15:19.3141 Info AppDomain Shutting down. Logger closing...
+2021-10-27 15:15:19.3221 Info Logger has been shut down.
+2021-10-27 15:44:55.6898 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:44:55.6912 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll
+2021-10-27 15:44:55.6951 Info NLog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 1.7.4.1610. Product version: 1.7.4+e2bffa9e949fb4760d75aca224e78631c063f087. GlobalAssemblyCache: False
+2021-10-27 15:44:55.6962 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Extensions.Logging.dll succeeded!
+2021-10-27 15:44:55.6962 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:44:55.6995 Info Loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll
+2021-10-27 15:44:55.7003 Info NLog.Web.AspNetCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.14.0.2042. Product version: 4.14.0+18bbcdbd5bd13b4565c32d72e09502b7ca6c71d4. GlobalAssemblyCache: False
+2021-10-27 15:44:55.7003 Info Auto loading assembly file: /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.Web.AspNetCore.dll succeeded!
+2021-10-27 15:44:55.7032 Info Message Template Auto Format enabled
+2021-10-27 15:44:55.7060 Info Loading assembly: NLog.Web.AspNetCore
+2021-10-27 15:44:55.7424 Info Adding target FileTarget(Name=cruiseaholic-logs)
+2021-10-27 15:44:55.7439 Info Adding target FileTarget(Name=cruiseaholic-db-changes)
+2021-10-27 15:44:55.9051 Warn Error Watching Path /Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0 Exception: System.IO.IOException: Failed to start the EventStream
+2021-10-27 15:44:55.9097 Info Validating config: TargetNames=cruiseaholic-logs, cruiseaholic-db-changes, ConfigItems=34, FilePath=/Users/andordavoti/git/university/ITPE3200/Cruiseaholic/CruiseaholicTest/bin/Debug/net5.0/NLog.config
+2021-10-27 15:44:55.9198 Info Configuration initialized.
+2021-10-27 15:44:55.9204 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.7.11.13229. Product version: 4.7.11+33ed3a9f86277651e93ddf39cda64a046a06778b. GlobalAssemblyCache: False
+2021-10-27 15:44:56.0341 Info AppDomain Shutting down. Logger closing...
+2021-10-27 15:44:56.0416 Info Logger has been shut down.

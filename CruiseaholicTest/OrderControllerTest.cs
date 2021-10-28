@@ -49,7 +49,7 @@ namespace CruiseaholicTest
             };
 
             repoMock.Setup(o => o.NewOrder(customerOrder)).ReturnsAsync(customerOrder.Email);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             // Act
             var result = await orderController.NewOrder(customerOrder) as OkObjectResult;
@@ -64,7 +64,7 @@ namespace CruiseaholicTest
             // Arrange
 
             repoMock.Setup(o => o.NewOrder(It.IsAny<CustomerOrder>())).ReturnsAsync(It.IsAny<string>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             orderController.ModelState.AddModelError("FirstName", "Model not valid in NewOrder!");
 
@@ -81,7 +81,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.NewOrder(It.IsAny<CustomerOrder>())).ThrowsAsync(null);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             // Act
             var result = await orderController.NewOrder(It.IsAny<CustomerOrder>()) as BadRequestObjectResult;
@@ -101,7 +101,7 @@ namespace CruiseaholicTest
 
             // Arrange
             repoMock.Setup(o => o.GetCustomerInfo("test@gmail.com")).ReturnsAsync(customerInfo);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             // Act
             var result = await orderController.GetCustomerInfo("test@gmail.com") as OkObjectResult;
@@ -117,7 +117,7 @@ namespace CruiseaholicTest
 
             // Arrange
             repoMock.Setup(o => o.GetCustomerInfo("test@gmail.com")).ReturnsAsync(It.IsAny<Customer>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             // Act
             var result = await orderController.GetCustomerInfo("test@gmail.com") as NotFoundObjectResult;
@@ -145,7 +145,7 @@ namespace CruiseaholicTest
             };
 
             repoMock.Setup(o => o.GetRoutes()).ReturnsAsync(routes);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             // Act
             var result = await orderController.GetRoutes() as OkObjectResult;
@@ -172,7 +172,7 @@ namespace CruiseaholicTest
             };
 
             repoMock.Setup(o => o.GetRoutes()).ReturnsAsync((List<Route>)null);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             // Act
             var result = await orderController.GetRoutes() as NotFoundObjectResult;
@@ -199,7 +199,7 @@ namespace CruiseaholicTest
             };
 
             repoMock.Setup(o => o.AddRoute(route)).ReturnsAsync(routes);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -218,7 +218,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.AddRoute(It.IsAny<Route>())).ReturnsAsync((List<Route>)null);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -237,7 +237,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.AddRoute(It.IsAny<Route>())).ReturnsAsync(It.IsAny<List<Route>>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             orderController.ModelState.AddModelError("ToDestination", "Model not valid in AddRoute!");
 
@@ -258,7 +258,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.AddRoute(It.IsAny<Route>())).ReturnsAsync(It.IsAny<List<Route>>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isNotLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -290,7 +290,7 @@ namespace CruiseaholicTest
             };
 
             repoMock.Setup(o => o.ChangeRoute(route)).ReturnsAsync(routes);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -309,7 +309,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.ChangeRoute(It.IsAny<Route>())).ReturnsAsync(It.IsAny<List<Route>>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isNotLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -327,7 +327,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.ChangeRoute(It.IsAny<Route>())).ReturnsAsync((List<Route>)null);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -346,7 +346,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.ChangeRoute(It.IsAny<Route>())).ReturnsAsync(It.IsAny<List<Route>>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             orderController.ModelState.AddModelError("ToDestination", "Model not valid in ChangeRoute!");
 
@@ -382,7 +382,7 @@ namespace CruiseaholicTest
             };
 
             repoMock.Setup(o => o.RemoveRoute(2)).ReturnsAsync(routes);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -401,7 +401,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.RemoveRoute(It.IsAny<int>())).ReturnsAsync(It.IsAny<List<Route>>());
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isNotLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -419,7 +419,7 @@ namespace CruiseaholicTest
         {
             // Arrange
             repoMock.Setup(o => o.RemoveRoute(0)).ReturnsAsync((List<Route>)null);
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -437,7 +437,7 @@ namespace CruiseaholicTest
         public void AuthorizeUserLoggedIn()
         {
             // Arrange
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -454,7 +454,7 @@ namespace CruiseaholicTest
         public void AuthorizeUserNotLoggedIn()
         {
             // Arrange
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isNotLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -473,7 +473,7 @@ namespace CruiseaholicTest
             // Arrange
             repoMock.Setup(o => o.Login(It.IsAny<User>())).ReturnsAsync(true);
 
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isNotLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -493,7 +493,7 @@ namespace CruiseaholicTest
             // Arrange
             repoMock.Setup(o => o.Login(It.IsAny<User>())).ReturnsAsync(true);
 
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             orderController.ModelState.AddModelError("Username", "Model not valid in LoggInn!");
 
@@ -521,7 +521,7 @@ namespace CruiseaholicTest
 
             repoMock.Setup(o => o.Login(user)).ReturnsAsync(false);
 
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isNotLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
@@ -539,7 +539,7 @@ namespace CruiseaholicTest
         public void LogOut()
         {
             // Arrange
-            var orderController = new OrderController(repoMock.Object, logMock.Object);
+            var orderController = new OrderController(repoMock.Object);
 
             mockSession[_isLoggedIn] = _isLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);

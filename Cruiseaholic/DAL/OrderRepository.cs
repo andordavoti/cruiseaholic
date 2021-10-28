@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 using System.Linq;
 using System;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
+using NLog;
+using Newtonsoft.Json;
 
 namespace Cruiseaholic.DAL
 {
@@ -18,14 +19,12 @@ namespace Cruiseaholic.DAL
 
         private readonly OrderContext _orderDB;
 
-        private readonly ILogger<OrderRepository> _orderLog;
+        private static readonly Logger _logger = LogManager.GetLogger("cruiseaholic-logs");
+        private static readonly Logger _dbLogger = LogManager.GetLogger("cruiseaholic-db-changes");
 
-
-        public OrderRepository(OrderContext orderDB, ILogger<OrderRepository> orderLog)
+        public OrderRepository(OrderContext orderDB)
         {
             _orderDB = orderDB;
-            _orderLog = orderLog;
-
         }
 
         [HttpPost]
@@ -71,6 +70,12 @@ namespace Cruiseaholic.DAL
 
                 existingCustomer.Orders.Add(order);
                 await _orderDB.SaveChangesAsync();
+                _dbLogger.Info("Added new order to the DB for existing customer. Order saved: "
+                    + JsonConvert.SerializeObject(order, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    }));
                 return existingCustomer.Email;
             }
             else
@@ -104,6 +109,11 @@ namespace Cruiseaholic.DAL
 
                 _orderDB.Add(order);
                 await _orderDB.SaveChangesAsync();
+                _dbLogger.Info("Added new order to the DB for a new customer. Order saved: " + JsonConvert.SerializeObject(order, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                    }));
                 return order.Customer.Email;
             }
         }
@@ -115,8 +125,9 @@ namespace Cruiseaholic.DAL
                 var customerInfo = await _orderDB.Customer.SingleAsync(customer => customer.Email == email);
                 return customerInfo;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error(e.Message);
                 return null;
             }
         }
@@ -128,8 +139,9 @@ namespace Cruiseaholic.DAL
                 var routes = await _orderDB.Route.ToListAsync();
                 return routes;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error(e.Message);
                 return null;
             }
         }
@@ -140,11 +152,13 @@ namespace Cruiseaholic.DAL
             {
                 _orderDB.Route.Add(route);
                 await _orderDB.SaveChangesAsync();
+                _dbLogger.Info("Added a new route: " + JsonConvert.SerializeObject(route, Formatting.Indented));
                 var routes = await _orderDB.Route.ToListAsync();
                 return routes;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Info(e.Message);
                 return null;
             }
         }
@@ -161,11 +175,13 @@ namespace Cruiseaholic.DAL
                 routeToChange.PriceVehicle = route.PriceVehicle;
 
                 await _orderDB.SaveChangesAsync();
+                _dbLogger.Info("Changed route: " + JsonConvert.SerializeObject(route, Formatting.Indented));
                 var routes = await _orderDB.Route.ToListAsync();
                 return routes;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error(e.Message);
                 return null;
             }
         }
@@ -177,11 +193,13 @@ namespace Cruiseaholic.DAL
                 Route routeToRemove = await _orderDB.Route.FindAsync(id);
                 _orderDB.Route.Remove(routeToRemove);
                 await _orderDB.SaveChangesAsync();
+                _dbLogger.Info("Removed route with id: " + id);
                 var routes = await _orderDB.Route.ToListAsync();
                 return routes;
             }
-            catch
+            catch (Exception e)
             {
+                _logger.Error(e.Message);
                 return null;
             }
         }
@@ -215,7 +233,7 @@ namespace Cruiseaholic.DAL
             }
             catch (Exception err)
             {
-                _orderLog.LogInformation(err.Message);
+                _logger.Error(err.Message);
                 return false;
             }
         }

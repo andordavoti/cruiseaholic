@@ -1,35 +1,27 @@
 ﻿<Properties StartupConfiguration="{CEA9E8DB-471B-43D1-AD7F-29D9368B1B0A}|Cruisaholic">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Cruiseaholic/Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cruiseaholic/DAL/OrderRepository.cs">
     <Files>
-      <File FileName="Cruiseaholic/Controllers/OrderController.cs" Line="8" Column="1" />
-      <File FileName="Cruiseaholic/Startup.cs" Line="60" Column="22" />
+      <File FileName="Cruiseaholic/Controllers/OrderController.cs" Line="6" Column="2" />
+      <File FileName="Cruiseaholic/DAL/OrderRepository.cs" Line="107" Column="35" />
+      <File FileName="Cruiseaholic/nlog.config" />
+      <File FileName="Cruiseaholic/Startup.cs" />
+      <File FileName="Cruiseaholic/Program.cs" />
+      <File FileName="Cruiseaholic/DAL/IOrderRepository.cs" />
+      <File FileName="Cruiseaholic/DAL/DBInit.cs" />
+      <File FileName="Cruiseaholic/appsettings.json" />
+      <File FileName="CruiseaholicTest/OrderControllerTest.cs" />
+      <File FileName="Cruiseaholic/README.md" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Cruiseaholic" expanded="True">
             <Node name="Cruiseaholic" expanded="True">
+              <Node name="ClientApp" selected="True" />
               <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True" />
-              <Node name="Logs" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Pages" expanded="True">
-                <Node name="Error.cshtml" expanded="True" />
-              </Node>
-              <Node name="Startup.cs" selected="True" />
             </Node>
             <Node name="CruiseaholicTest" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Cruiseaholic" expanded="True" selected="True">
-            <Node name="CruiseaholicTest" expanded="True">
-              <Node name="CruiseaholicTest" expanded="True">
-                <Node name="UnitTest1" expanded="True" />
-              </Node>
-            </Node>
           </Node>
         </State>
       </Pad>

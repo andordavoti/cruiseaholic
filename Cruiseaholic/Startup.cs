@@ -57,7 +57,6 @@ namespace Cruiseaholic
             {
                 app.UseDeveloperExceptionPage();
                 DBInit.Init(app);
-                loggerFactory.AddFile("Logs/OrdersLog.txt");
             }
             else
             {

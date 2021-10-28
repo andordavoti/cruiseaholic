@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Cruiseaholic.DAL;
 using Cruiseaholic.Models;
-using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.AspNetCore.Http;
+using NLog;
 
 namespace Cruiseaholic.Controllers
 {
@@ -13,14 +13,13 @@ namespace Cruiseaholic.Controllers
     {
         private readonly IOrderRepository _orderDB;
 
-        private readonly ILogger<OrderController> _orderLog;
+        private static readonly Logger _logger = LogManager.GetLogger("cruiseaholic-logs");
 
         private const string _isLoggedIn = "_isLoggedIn";
 
-        public OrderController(IOrderRepository orderDB, ILogger<OrderController> orderLog)
+        public OrderController(IOrderRepository orderDB)
         {
             _orderDB = orderDB;
-            _orderLog = orderLog;
         }
 
         [HttpPost]
@@ -33,13 +32,13 @@ namespace Cruiseaholic.Controllers
                     var customerEmail = await _orderDB.NewOrder(newOrder);
                     return Ok(customerEmail);
                 }
-                catch (Exception err)
+                catch (Exception e)
                 {
-                    _orderLog.LogInformation("Something went wrong saving the order! Error: " + err);
+                    _logger.Error(e.Message);
                     return BadRequest("Something went wrong saving the order!");
                 }
             }
-            _orderLog.LogInformation("Model not valid in NewOrder!");
+            _logger.Error("Model not valid in NewOrder!");
             return BadRequest("Model not valid in NewOrder!");
         }
 
@@ -49,7 +48,7 @@ namespace Cruiseaholic.Controllers
 
             if (customerInfo == null)
             {
-                _orderLog.LogInformation("Customer with email: " + email + ", was not found");
+                _logger.Error("Customer with email: " + email + ", was not found");
                 return NotFound("Customer with email: " + email + ", was not found");
             }
 
@@ -62,7 +61,7 @@ namespace Cruiseaholic.Controllers
 
             if (routes == null)
             {
-                _orderLog.LogInformation("Routes not set up correcly in DB");
+                _logger.Error("Routes not set up correcly in DB!");
                 return NotFound("Routes not set up correcly in DB");
             }
 
@@ -83,14 +82,14 @@ namespace Cruiseaholic.Controllers
 
                 if (routes == null)
                 {
-                    _orderLog.LogInformation("Unable to add new route");
+                    _logger.Error("Unable to add new route!");
                     return StatusCode(StatusCodes.Status500InternalServerError, "Unable to add new route");
                 }
 
                 return Ok(routes);
             }
 
-            _orderLog.LogInformation("Model not valid in AddRoute!");
+            _logger.Error("Model not valid in AddRoute!");
             return BadRequest("Model not valid in AddRoute!");
         }
 
@@ -108,14 +107,14 @@ namespace Cruiseaholic.Controllers
 
                 if (routes == null)
                 {
-                    _orderLog.LogInformation("Unable to change route");
+                    _logger.Error("Unable to change route!");
                     return StatusCode(StatusCodes.Status500InternalServerError, "Unable to change route");
                 }
 
                 return Ok(routes);
             }
 
-            _orderLog.LogInformation("Model not valid in ChangeRoute!");
+            _logger.Error("Model not valid in ChangeRoute!");
             return BadRequest("Model not valid in ChangeRoute!");
         }
 
@@ -131,7 +130,7 @@ namespace Cruiseaholic.Controllers
 
             if (routes == null)
             {
-                _orderLog.LogInformation("Unable to remove route");
+                _logger.Error("Unable to remove route!");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Unable to remove route");
             }
 
@@ -158,14 +157,14 @@ namespace Cruiseaholic.Controllers
                 bool ok = await _orderDB.Login(user);
                 if (!ok)
                 {
-                    _orderLog.LogInformation("Login failed for username: " + user.Username);
+                    _logger.Error("Login failed for username: " + user.Username);
                     HttpContext.Session.SetString(_isLoggedIn, "");
                     return Ok(false);
                 }
                 HttpContext.Session.SetString(_isLoggedIn, "YES");
                 return Ok(true);
             }
-            _orderLog.LogInformation("Model not valid in LoggInn!");
+            _logger.Error("Model not valid in LoggInn!");
             return BadRequest("Model not valid in LoggInn!");
         }
 
